@@ -2,24 +2,12 @@
   <section class="show-furniture">
     <h1>... y haz click en el/los espacios de tu eleccion</h1>
     <ul>
-      <keep-alive
-        ><div
-          class="container"
-          :style="{
-            width: totalWidth * 3 + 'px',
-            height: shelf.height * 3 + 'px',
-          }"
-          v-for="shelf in shelfs"
-          :key="shelf.id"
-          :shelf="shelf"
-        >
-          <space
-            v-for="space in shelf.insideSpaces.spaces"
-            :key="space.id"
-            :mySpace="space"
-            :shelf="shelf"
-          ></space></div
-      ></keep-alive>
+      <shelf
+        v-for="shelf in shelfs"
+        :key="shelf.id"
+        :myShelf="shelf"
+        logic="addHardware"
+      ></shelf>
     </ul>
     <span
       ><router-link class="arrow left" to="/add-separators">&larr;</router-link
@@ -32,14 +20,15 @@
 </template>
 
 <script>
-import Space from '../components/furniture/Space.vue';
+import Shelf from '../components/furniture/Shelf.vue';
 import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Space, AddHardwareForm },
+  components: { Shelf, AddHardwareForm },
   computed: {
-    ...mapGetters(['shelfs', 'totalWidth', 'stages']),
+    ...mapGetters(['shelfs', 'stages']),
   },
+  created() {},
 };
 </script>
 

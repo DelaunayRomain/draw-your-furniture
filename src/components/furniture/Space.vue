@@ -1,71 +1,29 @@
 <template>
-  <div class="separation" :style="cssStyle" @click="addHardwareToSpace">
-    <hardware-handle :space="space" :shelf="shelf"></hardware-handle>
+  <div class="separation" :style="{ width: this.mySpace.width + '%' }">
+    <div v-if="$route.path === '/add-hardware'" class="space">
+      <add-hardware-logic
+        :mySpace="mySpace"
+        :myShelf="myShelf"
+      ></add-hardware-logic>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import HardwareHandle from './HardwareHandle.vue';
+import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
+
 export default {
-  components: { HardwareHandle },
-  props: ['mySpace', 'shelf'],
+  components: { AddHardwareLogic },
+  props: ['mySpace', 'myShelf'],
   data() {
-    return {
-      space: this.mySpace,
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware']),
-    cssStyle() {
-      return {
-        width: this.space.width + '%',
-        backgroundColor: this.backgroundColor,
-      };
-    },
-    backgroundColor() {
-      if (this.space.hardware === 'door') {
-        return 'rgb(255, 127, 80)';
-      } else if (this.space.hardware === 'foldingDoor') {
-        return 'rgb(189, 183, 107)';
-      } else if (this.space.hardware === 'drawer') {
-        return 'rgb(0, 139, 139)';
-      } else {
-        return '';
-      }
-    },
-    identifiedSpace() {
-      const space = this.shelf.insideSpaces.spaces.find(
-        (space) => space.id === this.mySpace.id
-      );
-      return space;
-    },
+    ...mapGetters(['shelfs']),
   },
-  methods: {
-    addHardwareToSpace() {
-      this.resetHardwareInSpace();
-      this.pushHardware();
-      this.updateSpaceInStore();
-      console.log(this.identifiedSpace);
-    },
-    resetHardwareInSpace() {
-      if (this.space.hardware) {
-        this.space.hardware = '';
-      }
-    },
-    pushHardware() {
-      if (this.hardware.door === true) {
-        this.space.hardware = 'door';
-      } else if (this.hardware.foldingDoor === true) {
-        this.space.hardware = 'foldingDoor';
-      } else if (this.hardware.drawer === true) {
-        this.space.hardware = 'drawer';
-      }
-    },
-    updateSpaceInStore() {
-      this.identifiedSpace = this.space;
-    },
-  },
+  methods: {},
+  created() {},
 };
 </script>
 
@@ -74,5 +32,9 @@ export default {
   display: inline-block;
   height: 100%;
   border-right: 2px solid rgb(117, 62, 14);
+}
+.space {
+  width: 100%;
+  height: 100%;
 }
 </style>

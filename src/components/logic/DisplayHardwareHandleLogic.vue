@@ -40,9 +40,7 @@ export default {
       return this.shelfs.filter((shelf) => shelf.id > this.shelf.id);
     },
   },
-  created() {
-    console.log('hardware');
-  },
+  created() {},
 };
 </script>
 

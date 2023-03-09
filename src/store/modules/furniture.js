@@ -4,7 +4,6 @@ export default {
       totalHeight: null,
       totalWidth: null,
       shelfs: [],
-      shelfsAmount: null,
     };
   },
   mutations: {},

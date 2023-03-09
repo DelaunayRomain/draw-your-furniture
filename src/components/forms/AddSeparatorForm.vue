@@ -72,7 +72,7 @@ export default {
         [2, 33.3 + this.widthVariationRelatedToTypeOfSeparator],
         [3, 25 + this.widthVariationRelatedToTypeOfSeparator],
       ]);
-      console.log(mapSpaceWidth.get(this.amountOfSeparators));
+
       return mapSpaceWidth.get(this.amountOfSeparators);
     },
     remainingWidth() {

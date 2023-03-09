@@ -20,8 +20,8 @@
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
-      class="shelf"
       :logic="logic"
+      class="shelf"
     ></space>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['totalWidth', 'totalHeight', 'shelfs']),
+    ...mapGetters(['totalWidth', 'shelfs']),
     cssStyle() {
       return {
         width: this.totalWidth * 3 + 'px',
@@ -52,6 +52,9 @@ export default {
       this.$emit('updating-separators', shelf);
     },
   },
+  created(){
+    console.log(this.myShelf);
+  }
 };
 </script>
 

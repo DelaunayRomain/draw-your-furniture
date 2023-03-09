@@ -2,15 +2,12 @@
   <section class="show-furniture">
     <h1>... y haz click en el/los espacios de tu eleccion</h1>
     <ul>
-      <keep-alive
-        ><shelf
-          v-for="shelf in shelfs"
-          :key="shelf.id"
-          :shelf="shelf"
-          logic="addHardware"
-        >
-        </shelf
-      ></keep-alive>
+      <shelf
+        v-for="shelf in shelfs"
+        :key="shelf.id"
+        :myShelf="shelf"
+        logic="addHardware"
+      ></shelf>
     </ul>
     <span
       ><router-link class="arrow left" to="/add-separators">&larr;</router-link
@@ -29,7 +26,10 @@ import { mapGetters } from 'vuex';
 export default {
   components: { Shelf, AddHardwareForm },
   computed: {
-    ...mapGetters(['shelfs', 'totalWidth', 'stages']),
+    ...mapGetters(['shelfs', 'stages']),
+  },
+  created() {
+    console.log(this.shelfs);
   },
 };
 </script>

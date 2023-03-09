@@ -23,6 +23,7 @@ export default {
     ...mapGetters(['shelfs', 'hardware', 'totalWidth']),
   },
   methods: {},
+  created() {},
 };
 </script>
 

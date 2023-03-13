@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Shelf from '../components/furniture/Space.vue';
+import Shelf from '../components/furniture/Shelf.vue';
 import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
@@ -28,9 +28,7 @@ export default {
   computed: {
     ...mapGetters(['shelfs', 'stages']),
   },
-  created() {
-    console.log(this.shelfs);
-  },
+  created() {},
 };
 </script>
 

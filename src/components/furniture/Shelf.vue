@@ -14,14 +14,13 @@
       class="shelf"
     ></add-separators-logic>
   </div>
-  <div v-if="logic === 'addHardware'">
+  <div v-if="logic === 'addHardware'" :style="cssStyle" class="shelf">
     <space
       v-for="space in myShelf.insideSpaces.spaces"
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
       :logic="logic"
-      class="shelf"
     ></space>
   </div>
 </template>
@@ -52,9 +51,7 @@ export default {
       this.$emit('updating-separators', shelf);
     },
   },
-  created(){
-    console.log(this.myShelf);
-  }
+  created() {},
 };
 </script>
 

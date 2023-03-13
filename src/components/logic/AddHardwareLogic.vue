@@ -1,5 +1,8 @@
 <template>
-  <div :style="cssStyle" @click="addHardwareToSpace">
+  <div
+    :style="{ backgroundColor: backgroundColor }"
+    @click="addHardwareToSpace"
+  >
     <display-hardware-handle-logic
       :space="space"
       :shelf="shelf"
@@ -12,7 +15,7 @@ import { mapGetters } from 'vuex';
 import DisplayHardwareHandleLogic from './DisplayHardwareHandleLogic.vue';
 export default {
   components: { DisplayHardwareHandleLogic },
-  props: ['mySpace', 'shelf'],
+  props: ['mySpace', 'myShelf'],
   data() {
     return {
       space: this.mySpace,
@@ -20,11 +23,6 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs', 'hardware']),
-    cssStyle() {
-      return {
-        backgroundColor: 'rgb(255, 127, 80)',
-      };
-    },
     backgroundColor() {
       if (this.space.hardware === 'door') {
         return 'rgb(255, 127, 80)';
@@ -69,5 +67,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

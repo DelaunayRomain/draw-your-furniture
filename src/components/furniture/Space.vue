@@ -4,6 +4,7 @@
       <add-hardware-logic
         :mySpace="mySpace"
         :myShelf="myShelf"
+        class="separation"
       ></add-hardware-logic>
     </div>
   </div>

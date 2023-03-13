@@ -20,7 +20,6 @@
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
-      :logic="logic"
     ></space>
   </div>
 </template>

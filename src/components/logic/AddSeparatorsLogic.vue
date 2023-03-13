@@ -9,6 +9,7 @@
       :key="space.id"
       :mySpace="space"
       :myShelf="myShelf"
+      :logic="undefined"
     ></space>
   </div>
 </template>

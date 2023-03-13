@@ -1,11 +1,8 @@
 <template>
-  <div
-    :style="{ backgroundColor: backgroundColor }"
-    @click="addHardwareToSpace"
-  >
+  <div :style="cssStyle" class="hardware" @click="addHardwareToSpace">
     <display-hardware-handle-logic
-      :space="space"
-      :shelf="shelf"
+      :space="mySpace"
+      :shelf="myShelf"
     ></display-hardware-handle-logic>
   </div>
 </template>
@@ -23,6 +20,11 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs', 'hardware']),
+    cssStyle() {
+      return {
+        backgroundColor: this.backgroundColor,
+      };
+    },
     backgroundColor() {
       if (this.space.hardware === 'door') {
         return 'rgb(255, 127, 80)';
@@ -45,6 +47,7 @@ export default {
     addHardwareToSpace() {
       this.resetHardwareInSpace();
       this.pushHardware();
+      console.log(this.space.hardware);
       this.updateSpaceInStore();
     },
     resetHardwareInSpace() {
@@ -65,5 +68,15 @@ export default {
       this.identifiedSpace = this.space;
     },
   },
+  created() {
+    console.log(this.mySpace.width);
+  },
 };
 </script>
+
+<style scoped>
+.hardware {
+  width: 100%;
+  height: 100%;
+}
+</style>

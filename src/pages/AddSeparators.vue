@@ -1,7 +1,7 @@
 <template>
   <keep-alive>
     <add-separator-form
-      :myUpdatingShelf="computedUpdatingShelf"
+      :someShelf="computedUpdatingShelf"
     ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">

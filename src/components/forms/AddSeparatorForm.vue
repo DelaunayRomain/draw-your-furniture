@@ -8,7 +8,7 @@
           <select
             name="amountOfSeparators"
             id="amountOfSeparators"
-            v-model.number="amountOfSeparators"
+            v-model.number="this.shelf.insideSpaces.amountOfSeparators"
             @change="updateSeparators"
           >
             <option value="0">0</option>
@@ -22,7 +22,7 @@
           <select
             name="typeOfSeparators"
             id="typeOfSeparators"
-            v-model="typeOfSeparators"
+            v-model="shelf.insideSpaces.typeOfSeparators"
             @change="updateSeparators"
           >
             <option value="centered">centrado</option>
@@ -40,30 +40,29 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  props: ['myUpdatingShelf'],
+  props: ['someShelf'],
   data() {
     return {
-      amountOfSeparators: 0,
-      typeOfSeparators: 'centered',
       isUpdating: false,
     };
   },
   computed: {
     ...mapGetters(['shelfs']),
-    updatingShelf() {
-      return this.shelfs.find((shelf) => shelf === this.myUpdatingShelf);
+    shelf() {
+      return this.someShelf;
+    },
+    identifiedShelf() {
+      return this.shelfs.find((shelf) => shelf === this.someShelf);
     },
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
         centered: 0,
-        left: -12 / this.updatingShelf.insideSpaces.amountOfSeparators,
-        right: 12 / this.updatingShelf.insideSpaces.amountOfSeparators,
+        left: -12 / this.shelf.insideSpaces.amountOfSeparators,
+        right: 12 / this.shelf.insideSpaces.amountOfSeparators,
       };
-      return objectTypeSeparators[
-        this.updatingShelf.insideSpaces.typeOfSeparators
-      ];
+      return objectTypeSeparators[this.shelf.insideSpaces.typeOfSeparators];
     },
     spaceWidth() {
       const mapSpaceWidth = new Map([
@@ -73,51 +72,50 @@ export default {
         [3, 25 + this.widthVariationRelatedToTypeOfSeparator],
       ]);
 
-      return mapSpaceWidth.get(this.amountOfSeparators);
+      return mapSpaceWidth.get(this.shelf.insideSpaces.amountOfSeparators);
     },
     remainingWidth() {
-      return 100 - this.amountOfSeparators * this.spaceWidth;
+      return 100 - this.shelf.insideSpaces.amountOfSeparators * this.spaceWidth;
+    },
+    payload() {
+      return {
+        newShelf: this.shelf,
+        shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
+      };
     },
   },
   methods: {
+    ...mapActions(['updateShelfInStore']),
     updateSeparators() {
-      this.updatingShelf.insideSpaces.amountOfSeparators =
-        this.amountOfSeparators;
-      this.updatingShelf.insideSpaces.typeOfSeparators = this.typeOfSeparators;
       this.pushSpacesIntoArray();
+      this.updateShelfInStore(this.payload);
     },
     pushSpacesIntoArray() {
-      this.updatingShelf.insideSpaces.spaces = [];
+      this.shelf.insideSpaces.spaces = [];
       this.pushSeparatorWidth();
       this.pushRemainingWidth();
     },
     pushSeparatorWidth() {
-      for (
-        let id = 0;
-        id < this.updatingShelf.insideSpaces.amountOfSeparators;
-        id++
-      ) {
-        this.updatingShelf.insideSpaces.spaces.push({
+      for (let id = 0; id < this.shelf.insideSpaces.amountOfSeparators; id++) {
+        this.shelf.insideSpaces.spaces.push({
           id: id,
           width: this.spaceWidth,
         });
       }
     },
     pushRemainingWidth() {
-      this.updatingShelf.insideSpaces.spaces.push({
-        id: this.updatingShelf.insideSpaces.spaces.length,
+      this.shelf.insideSpaces.spaces.push({
+        id: this.shelf.insideSpaces.spaces.length,
         width: this.remainingWidth,
       });
     },
     clearData() {
-      this.updatingShelf.insideSpaces.isUpdating = false;
+      this.shelf.insideSpaces.isUpdating = false;
       this.isUpdating = false;
-      this.amountOfSeparators = 0;
-      this.typeOfSeparators = 'centered';
     },
   },
   watch: {
-    myUpdatingShelf() {
+    someShelf() {
       this.isUpdating = true;
     },
   },

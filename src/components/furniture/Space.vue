@@ -1,10 +1,9 @@
 <template>
   <div class="separation" :style="{ width: this.mySpace.width + '%' }">
-    <div v-if="$route.path === '/add-hardware'">
+    <div v-if="$route.path === '/add-hardware'" class="space">
       <add-hardware-logic
         :mySpace="mySpace"
         :myShelf="myShelf"
-        class="separation"
       ></add-hardware-logic>
     </div>
   </div>
@@ -21,7 +20,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware', 'totalWidth']),
+    ...mapGetters(['shelfs']),
   },
   methods: {},
   created() {},
@@ -33,5 +32,9 @@ export default {
   display: inline-block;
   height: 100%;
   border-right: 2px solid rgb(117, 62, 14);
+}
+.space {
+  width: 100%;
+  height: 100%;
 }
 </style>

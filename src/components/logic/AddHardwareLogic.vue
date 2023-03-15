@@ -68,9 +68,7 @@ export default {
       this.identifiedSpace = this.space;
     },
   },
-  created() {
-    console.log(this.mySpace.width);
-  },
+  created() {},
 };
 </script>
 

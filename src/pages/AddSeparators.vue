@@ -13,7 +13,7 @@
           :key="shelf.id"
           :myShelf="shelf"
           @updating-separators="passIdentifiedShelfToForm"
-          logic="addSeparatorsLogic"
+          :addSeparatorsLogic="true"
         ></shelf
       ></keep-alive>
     </ul>

@@ -18,7 +18,7 @@
     <space
       v-for="space in shelf.insideSpaces.spaces"
       :key="space.id"
-      :mySpace="space"
+      :space="space"
       :shelf="shelf"
       :addHardware="true"
     ></space>

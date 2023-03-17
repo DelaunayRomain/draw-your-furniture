@@ -3,7 +3,7 @@
     <div v-if="addHardware" class="space">
       <add-hardware-logic
         :mySpace="mySpace"
-        :myShelf="myShelf"
+        :shelf="shelf"
       ></add-hardware-logic>
     </div>
   </div>
@@ -15,7 +15,7 @@ import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
 
 export default {
   components: { AddHardwareLogic },
-  props: ['mySpace', 'myShelf', 'addHardware'],
+  props: ['mySpace', 'shelf', 'addHardware'],
   data() {
     return {};
   },

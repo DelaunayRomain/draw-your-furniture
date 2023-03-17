@@ -1,8 +1,6 @@
 <template>
   <keep-alive>
-    <add-separator-form
-      :someShelf="computedUpdatingShelf"
-    ></add-separator-form>
+    <add-separator-form :someShelf="computedUpdatingShelf"></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
@@ -11,7 +9,7 @@
         ><shelf
           v-for="shelf in shelfs"
           :key="shelf.id"
-          :myShelf="shelf"
+          :shelf="shelf"
           @updating-separators="passIdentifiedShelfToForm"
           :addSeparatorsLogic="true"
         ></shelf

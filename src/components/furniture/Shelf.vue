@@ -1,14 +1,14 @@
 <template>
   <div v-if="shelfHeightLogic">
     <shelf-height-logic
-      :myShelf="myShelf"
+      :shelf="shelf"
       :style="cssStyle"
       class="shelf"
     ></shelf-height-logic>
   </div>
   <div v-if="addSeparatorsLogic">
     <add-separators-logic
-      :myShelf="myShelf"
+      :shelf="shelf"
       :style="cssStyle"
       @updating-separators="emitUpdatingSeparators"
       class="shelf"
@@ -16,10 +16,10 @@
   </div>
   <div v-if="addHardware" :style="cssStyle" class="shelf">
     <space
-      v-for="space in myShelf.insideSpaces.spaces"
+      v-for="space in shelf.insideSpaces.spaces"
       :key="space.id"
-      :mySpace="space"
-      :myShelf="myShelf"
+      :space="space"
+      :shelf="shelf"
       :addHardware="true"
     ></space>
   </div>
@@ -32,7 +32,7 @@ import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
-  props: ['myShelf', 'shelfHeightLogic', 'addSeparatorsLogic', 'addHardware'],
+  props: ['shelf', 'shelfHeightLogic', 'addSeparatorsLogic', 'addHardware'],
   emits: ['updating-separators'],
   data() {
     return {};
@@ -42,7 +42,7 @@ export default {
     cssStyle() {
       return {
         width: this.totalWidth * 3 + 'px',
-        height: this.myShelf.height * 3 + 'px',
+        height: this.shelf.height * 3 + 'px',
       };
     },
   },

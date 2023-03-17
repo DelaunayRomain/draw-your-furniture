@@ -7,7 +7,11 @@ export default {
       shelfsAmount: null,
     };
   },
-  mutations: {},
+  mutations: {
+    updateShelfInStore(state, payload) {
+      state.shelfs.splice(payload.shelfindex, 1, payload.newShelf);
+    },
+  },
   getters: {
     shelfs(state) {
       return state.shelfs;
@@ -22,5 +26,9 @@ export default {
       return state.shelfsAmount;
     },
   },
-  actions: {},
+  actions: {
+    updateShelfInStore(context, payload) {
+      context.commit(context.updateShelfInStore, payload);
+    },
+  },
 };

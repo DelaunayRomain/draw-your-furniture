@@ -43,6 +43,7 @@ export default {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.shelf.height * 3 + 'px',
+        borderTop: this.shelf.id === 0 ? '2px solid rgb(117, 62, 14)' : '',
       };
     },
   },
@@ -58,6 +59,8 @@ export default {
 <style scoped>
 .shelf {
   margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
+  border-right: 2px solid rgb(117, 62, 14);
+  border-left: 2px solid rgb(117, 62, 14);
+  border-bottom: 2px solid rgb(117, 62, 14);
 }
 </style>

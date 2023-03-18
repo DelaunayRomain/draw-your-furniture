@@ -1,10 +1,7 @@
 <template>
-  <div class="separation" :style="{ width: this.space.width + '%' }">
+  <div class="separation" :style="cssStyle">
     <div v-if="addHardware" class="space">
-      <add-hardware-logic
-        :space="space"
-        :shelf="shelf"
-      ></add-hardware-logic>
+      <add-hardware-logic :space="space" :shelf="shelf"></add-hardware-logic>
     </div>
   </div>
 </template>
@@ -21,6 +18,12 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs']),
+    cssStyle() {
+      return {
+        width: this.space.width + '%',
+        borderLeft: this.space.id === 0 ? '' : '2px solid rgb(117, 62, 14)',
+      };
+    },
   },
   methods: {},
   created() {},
@@ -31,7 +34,6 @@ export default {
 .separation {
   display: inline-block;
   height: 100%;
-  border-right: 2px solid rgb(117, 62, 14);
 }
 .space {
   width: 100%;

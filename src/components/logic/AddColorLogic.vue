@@ -1,5 +1,5 @@
 <template>
-  <div class="hardware">
+  <div class="hardware" :style="cssStyle">
     <display-hardware-handle-logic
       :space="space"
       :shelf="shelf"
@@ -20,6 +20,11 @@ export default {
   },
   computed: {
     ...mapGetters(['shelfs', 'hardware']),
+    cssStyle() {
+      return {
+        backgroundColor: this.space.hardware ? 'rgb(117, 62, 14)' : '',
+      };
+    },
     identifiedSpace() {
       const space = this.shelf.insideSpaces.spaces.find(
         (space) => space.id === this.space.id

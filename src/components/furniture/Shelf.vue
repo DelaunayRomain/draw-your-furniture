@@ -14,13 +14,14 @@
       class="shelf"
     ></add-separators-logic>
   </div>
-  <div v-if="addHardware" :style="cssStyle" class="shelf">
+  <div v-if="addHardware || addColor" :style="cssStyle" class="shelf">
     <space
       v-for="space in shelf.insideSpaces.spaces"
       :key="space.id"
       :space="space"
       :shelf="shelf"
-      :addHardware="true"
+      :addHardware="addHardware"
+      :addColor="addColor"
     ></space>
   </div>
 </template>
@@ -32,7 +33,13 @@ import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
-  props: ['shelf', 'shelfHeightLogic', 'addSeparatorsLogic', 'addHardware'],
+  props: [
+    'shelf',
+    'shelfHeightLogic',
+    'addSeparatorsLogic',
+    'addHardware',
+    'addColor',
+  ],
   emits: ['updating-separators'],
   data() {
     return {};

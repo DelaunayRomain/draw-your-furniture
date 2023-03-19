@@ -32,7 +32,13 @@ import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
-  props: ['shelf', 'shelfHeightLogic', 'addSeparatorsLogic', 'addHardware'],
+  props: [
+    'shelf',
+    'shelfHeightLogic',
+    'addSeparatorsLogic',
+    'addHardware',
+    'addColor',
+  ],
   emits: ['updating-separators'],
   data() {
     return {};

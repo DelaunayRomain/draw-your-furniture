@@ -22,7 +22,7 @@ export default {
     ...mapGetters(['shelfs', 'hardware']),
     cssStyle() {
       return {
-        backgroundColor: this.space.hardware ? 'rgb(117, 62, 14)' : '',
+        backgroundColor: this.space.hardware ? 'rgb(245,245,220)' : '',
       };
     },
     identifiedSpace() {

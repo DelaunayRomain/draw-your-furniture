@@ -3,16 +3,20 @@
     <div v-if="addHardware" class="space">
       <add-hardware-logic :space="space" :shelf="shelf"></add-hardware-logic>
     </div>
+    <div v-if="addColor" class="space">
+      <add-color-logic :space="space" :shelf="shelf"></add-color-logic>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
+import AddColorLogic from '../logic/AddColorLogic.vue';
 
 export default {
-  components: { AddHardwareLogic },
-  props: ['space', 'shelf', 'addHardware'],
+  components: { AddHardwareLogic, AddColorLogic },
+  props: ['space', 'shelf', 'addHardware', 'addColor'],
   data() {
     return {};
   },

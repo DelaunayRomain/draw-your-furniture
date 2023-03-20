@@ -21,12 +21,17 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(['shelfs', 'colorFurniture', 'colors']),
     cssStyle() {
       return {
         width: this.space.width + '%',
-        borderLeft: this.space.id === 0 ? '' : '2px solid rgb(117, 62, 14)',
+        borderLeft: this.space.id === 0 ? '' : '2px solid ' + this.colorBorder,
       };
+    },
+    colorBorder() {
+      return this.colorFurniture.spot.includes('chants') && this.addColor
+        ? this.colors[this.colorFurniture.color]
+        : 'rgb(117, 62, 14)';
     },
   },
   methods: {},

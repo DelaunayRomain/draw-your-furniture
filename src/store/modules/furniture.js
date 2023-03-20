@@ -5,7 +5,7 @@ export default {
       totalWidth: null,
       shelfs: [],
       colorFurniture: {
-        color: '',
+        color: 'natural',
         spot: [],
       },
     };
@@ -25,8 +25,8 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfsAmount(state) {
-      return state.shelfsAmount;
+    colorFurniture(state) {
+      return state.colorFurniture;
     },
   },
   actions: {

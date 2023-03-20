@@ -14,16 +14,19 @@ export default {
   components: { DisplayHardwareHandleLogic },
   props: ['space', 'shelf'],
   data() {
-    return {
-      someSpace: this.space,
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware']),
+    ...mapGetters(['shelfs', 'hardware', 'colorFurniture', 'colors']),
     cssStyle() {
       return {
-        backgroundColor: this.space.hardware ? 'rgb(245,245,220)' : '',
+        backgroundColor: this.space.hardware ? this.backgroundColor : '',
       };
+    },
+    backgroundColor() {
+      return this.colorFurniture.spot.includes('hardware')
+        ? this.colors[this.colorFurniture.color]
+        : 'rgb(245,245,220)';
     },
   },
   methods: {},

@@ -28,7 +28,7 @@ export default {
     colorHardware() {
       return this.colorFurniture.spot.includes('hardware')
         ? this.colors[this.colorFurniture.color]
-        : 'rgb(245,245,220)';
+        : this.colors.white;
     },
     colorBackgroundFurniture() {
       return this.colorFurniture.spot.includes('background')

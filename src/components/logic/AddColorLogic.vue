@@ -21,19 +21,9 @@ export default {
     cssStyle() {
       return {
         backgroundColor: this.space.hardware
-          ? this.colorHardware
-          : this.colorBackgroundFurniture,
+          ? this.colorFurniture.hardware
+          : this.colorFurniture.background,
       };
-    },
-    colorHardware() {
-      return this.colorFurniture.spot.includes('hardware')
-        ? this.colors[this.colorFurniture.color]
-        : this.colors.white;
-    },
-    colorBackgroundFurniture() {
-      return this.colorFurniture.spot.includes('background')
-        ? this.colors[this.colorFurniture.color]
-        : this.colors.white;
     },
   },
   methods: {},

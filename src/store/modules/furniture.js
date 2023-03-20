@@ -6,7 +6,7 @@ export default {
       shelfs: [],
       colorFurniture: {
         chants: 'natural',
-        background: 'natural',
+        background: 'white',
         hardware: 'natural',
         legs: 'natural',
       },

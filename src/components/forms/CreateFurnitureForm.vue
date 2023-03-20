@@ -30,7 +30,7 @@ export default {
         shelfsAmount: 0,
         colorFurniture: {
           chants: 'natural',
-          background: 'natural',
+          background: 'white',
           hardware: 'natural',
           legs: 'natural',
         },

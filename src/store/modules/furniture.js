@@ -5,8 +5,10 @@ export default {
       totalWidth: null,
       shelfs: [],
       colorFurniture: {
-        color: 'natural',
-        spot: [],
+        chants: 'natural',
+        background: 'natural',
+        hardware: 'natural',
+        legs: 'natural',
       },
     };
   },

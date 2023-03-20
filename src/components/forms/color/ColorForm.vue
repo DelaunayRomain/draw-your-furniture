@@ -53,7 +53,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import InputColorForm from './InputColorForm.vue';
 export default {
+  components: { InputColorForm },
   data() {
     return {
       color: 'natural',

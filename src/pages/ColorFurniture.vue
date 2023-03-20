@@ -21,7 +21,7 @@
 
 <script>
 import Shelf from '../components/furniture/Shelf.vue';
-import ColorForm from '../components/forms/ColorForm.vue';
+import ColorForm from '../components/forms/color/ColorForm.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { Shelf, ColorForm },

@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -69,8 +70,11 @@ export default {
       whereToColor: [],
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['colors']),
+  },
   methods: {},
+  created() {},
 };
 </script>
 

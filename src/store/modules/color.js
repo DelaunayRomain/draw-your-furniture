@@ -16,8 +16,8 @@ export default {
   },
   mutations: {},
   getters: {
-    color(state) {
-      return state.color;
+    colors(state) {
+      return state.colors;
     },
   },
   actions: {},

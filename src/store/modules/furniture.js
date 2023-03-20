@@ -4,7 +4,10 @@ export default {
       totalHeight: null,
       totalWidth: null,
       shelfs: [],
-      shelfsAmount: null,
+      colorFurniture: {
+        color: '',
+        spot: [],
+      },
     };
   },
   mutations: {

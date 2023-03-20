@@ -1,7 +1,7 @@
 <template>
   <section class="general-form">
     <h1>Agrega color a tu mueble!</h1>
-    <form submit.prevent="addColorToFurniture">
+    <form submit.prevent="addColorToFurnitureInStore">
       <h3>Que color ?</h3>
       <div class="input">
         <select name="color">
@@ -18,18 +18,13 @@
       <h3>Que parte del mueble ?</h3>
       <div class="input">
         <div>
-          <input
-            type="checkbox"
-            v-model="whereToColor"
-            value="chants"
-            id="chants"
-          />
+          <input type="checkbox" v-model="spot" value="chants" id="chants" />
           <label for="chants">Cantos</label>
         </div>
         <div>
           <input
             type="checkbox"
-            v-model="whereToColor"
+            v-model="spot"
             value="hardware"
             id="hardware"
           />
@@ -39,23 +34,17 @@
         <div>
           <input
             type="checkbox"
-            v-model="whereToColor"
+            v-model="spot"
             value="background"
             id="background"
           />
           <label for="background">Fondo</label>
         </div>
         <div>
-          <input
-            type="checkbox"
-            v-model="whereToColor"
-            value="legs"
-            id="legs"
-          />
+          <input type="checkbox" v-model="spot" value="legs" id="legs" />
           <label for="legs">Patas</label>
         </div>
       </div>
-
       <button>Ver mueble colorado!</button>
     </form>
   </section>
@@ -67,13 +56,19 @@ export default {
   data() {
     return {
       color: '',
-      whereToColor: [],
+      spot: [],
     };
   },
   computed: {
-    ...mapGetters(['colors']),
+    ...mapGetters(['colors', 'colorFurniture']),
   },
-  methods: {},
+  methods: {
+    addColorToFurnitureInStore() {
+      this.colorFurniture = {};
+      this.colorFurniture.color = this.color;
+      this.colorFurniture.spot = this.spot;
+    },
+  },
   created() {},
 };
 </script>

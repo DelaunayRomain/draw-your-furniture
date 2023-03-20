@@ -25,12 +25,6 @@ export default {
         backgroundColor: this.space.hardware ? 'rgb(245,245,220)' : '',
       };
     },
-    identifiedSpace() {
-      const space = this.shelf.insideSpaces.spaces.find(
-        (space) => space.id === this.space.id
-      );
-      return space;
-    },
   },
   methods: {},
 };

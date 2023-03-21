@@ -3,6 +3,7 @@ export default {
     return {
       totalHeight: null,
       totalWidth: null,
+      legsHeight: null,
       shelfs: [],
       colorFurniture: {
         chants: 'natural',
@@ -26,6 +27,9 @@ export default {
     },
     totalWidth(state) {
       return state.totalWidth;
+    },
+    legsHeight(state) {
+      return state.legsHeight;
     },
     colorFurniture(state) {
       return state.colorFurniture;

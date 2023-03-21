@@ -11,10 +11,10 @@
             v-for="shelf in shelfs"
             :key="shelf.id"
             :shelf="shelf"
-            class="shelf"
             :shelfHeightLogic="true"
           ></shelf>
         </ul>
+        <legs class="legs"></legs>
         <span
           ><router-link class="arrow left" to="/select-furniture"
             >&larr; </router-link
@@ -35,11 +35,13 @@
 <script>
 import CreateFurnitureForm from '../components/forms/CreateFurnitureForm.vue';
 import Shelf from '../components/furniture/Shelf.vue';
+import Legs from '../components/furniture/Legs.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: {
     CreateFurnitureForm,
     Shelf,
+    Legs,
   },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
@@ -63,6 +65,14 @@ export default {
   padding: 1rem;
   text-align: center;
   background-color: white;
+}
+
+.legs {
+  float: left;
+  margin-left: 8.5rem;
+  margin-top: -1rem;
+  height: 30px;
+  width: auto;
 }
 
 .arrow {

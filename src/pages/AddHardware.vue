@@ -9,11 +9,10 @@
         :addHardware="true"
       ></shelf>
     </ul>
-    <span
-      ><router-link class="arrow left" to="/add-separators">&larr;</router-link
-      ><router-link class="arrow right" to="/color" @click="stages.color = true"
-        >&rarr;</router-link
-      ></span
+    <router-link class="arrow left" to="/add-separators">&larr;</router-link>
+    <legs></legs>
+    <router-link class="arrow right" to="/color" @click="stages.color = true"
+      >&rarr;</router-link
     >
   </section>
   <add-hardware-form></add-hardware-form>
@@ -21,10 +20,11 @@
 
 <script>
 import Shelf from '../components/furniture/Shelf.vue';
+import Legs from '../components/furniture/Legs.vue';
 import AddHardwareForm from '../components/forms/AddHardwareForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Shelf, AddHardwareForm },
+  components: { Shelf, AddHardwareForm, Legs },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
   },
@@ -62,6 +62,7 @@ h1 {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .left {

@@ -9,22 +9,21 @@
         :addColor="true"
       ></shelf>
     </ul>
-    <span>
-      <router-link class="arrow left" to="/add-hardware"
-        >&larr;</router-link
-      ></span
-    >
-    <span><button class="right">Generar cotizacion</button></span>
+
+    <router-link class="arrow left" to="/add-hardware">&larr;</router-link>
+    <legs></legs>
+    <button class="right">Generar cotizacion</button>
   </section>
   <color-form></color-form>
 </template>
 
 <script>
 import Shelf from '../components/furniture/Shelf.vue';
+import Legs from '../components/furniture/Legs.vue';
 import ColorForm from '../components/forms/color/ColorForm.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Shelf, ColorForm },
+  components: { Shelf, ColorForm, Legs },
   computed: {
     ...mapGetters(['shelfs', 'stages']),
   },
@@ -63,6 +62,7 @@ h1 {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .left {

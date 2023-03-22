@@ -11,7 +11,7 @@
     </ul>
 
     <router-link class="arrow left" to="/add-hardware">&larr;</router-link>
-    <legs></legs>
+    <legs :addColor="true"></legs>
     <button class="right">Generar cotizacion</button>
   </section>
   <color-form></color-form>

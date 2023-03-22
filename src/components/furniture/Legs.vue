@@ -1,7 +1,7 @@
 <template>
-  <div class="legs" :style="cssLegs">
-    <legs-svg class="leg left-leg"></legs-svg>
-    <legs-svg class="leg right-leg"></legs-svg>
+  <div class="legs" :style="cssWidthForLegs">
+    <legs-svg class="leg left-leg" :color="colorLegs"></legs-svg>
+    <legs-svg class="leg right-leg" :color="colorLegs"></legs-svg>
   </div>
 </template>
 <script>
@@ -9,10 +9,16 @@ import { mapGetters } from 'vuex';
 import LegsSvg from './../../assets/img/LegsSvg.vue';
 export default {
   components: { LegsSvg },
+  props: ['addColor'],
   computed: {
-    ...mapGetters(['totalWidth']),
-    cssLegs() {
+    ...mapGetters(['totalWidth', 'colorFurniture', 'colors']),
+    cssWidthForLegs() {
       return { width: this.totalWidth * 3 + 'px' };
+    },
+    colorLegs() {
+      return this.addColor
+        ? this.colors[this.colorFurniture.legs]
+        : 'rgb(117, 62, 14)';
     },
   },
 };

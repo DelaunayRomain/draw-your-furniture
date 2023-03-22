@@ -71,7 +71,7 @@ export default {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .left {

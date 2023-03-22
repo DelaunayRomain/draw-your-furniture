@@ -14,7 +14,7 @@
             :shelfHeightLogic="true"
           ></shelf>
         </ul>
-        <legs class="legs"></legs>
+        <legs></legs>
         <span
           ><router-link class="arrow left" to="/select-furniture"
             >&larr; </router-link
@@ -44,7 +44,7 @@ export default {
     Legs,
   },
   computed: {
-    ...mapGetters(['shelfs', 'stages']),
+    ...mapGetters(['shelfs', 'stages', 'totalWidth']),
   },
   methods: {
     unlockNextPage() {
@@ -60,19 +60,10 @@ export default {
   width: 58vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
-  margin-left: 1.5rem;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
   background-color: white;
-}
-
-.legs {
-  float: left;
-  margin-left: 8.5rem;
-  margin-top: -1rem;
-  height: 30px;
-  width: auto;
 }
 
 .arrow {
@@ -81,6 +72,7 @@ export default {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 5rem;
 }
 
 .left {

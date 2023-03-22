@@ -1,10 +1,10 @@
 <template>
-  <div class="separation" :style="{ width: this.mySpace.width + '%' }">
-    <div v-if="logic === 'addHardware'" class="space">
-      <add-hardware-logic
-        :mySpace="mySpace"
-        :myShelf="myShelf"
-      ></add-hardware-logic>
+  <div class="separation" :style="cssStyle">
+    <div v-if="addHardware" class="space">
+      <add-hardware-logic :space="space" :shelf="shelf"></add-hardware-logic>
+    </div>
+    <div v-if="addColor" class="space">
+      <add-color-logic :space="space" :shelf="shelf"></add-color-logic>
     </div>
   </div>
 </template>
@@ -12,15 +12,27 @@
 <script>
 import { mapGetters } from 'vuex';
 import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
+import AddColorLogic from '../logic/AddColorLogic.vue';
 
 export default {
-  components: { AddHardwareLogic },
-  props: ['mySpace', 'myShelf', 'logic'],
+  components: { AddHardwareLogic, AddColorLogic },
+  props: ['space', 'shelf', 'addHardware', 'addColor'],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(['shelfs', 'colorFurniture', 'colors']),
+    cssStyle() {
+      return {
+        width: this.space.width + '%',
+        borderLeft: this.space.id === 0 ? '' : '2px solid ' + this.colorBorder,
+      };
+    },
+    colorBorder() {
+      return this.addColor
+        ? this.colors[this.colorFurniture.chants]
+        : 'rgb(117, 62, 14)';
+    },
   },
   methods: {},
   created() {},
@@ -31,7 +43,6 @@ export default {
 .separation {
   display: inline-block;
   height: 100%;
-  border-right: 2px solid rgb(117, 62, 14);
 }
 .space {
   width: 100%;

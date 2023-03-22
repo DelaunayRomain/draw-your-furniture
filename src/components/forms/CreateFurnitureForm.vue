@@ -28,6 +28,13 @@ export default {
         totalHeight: 0,
         totalWidth: 0,
         shelfsAmount: 0,
+        legsHeight: 0,
+        colorFurniture: {
+          chants: 'natural',
+          background: 'white',
+          hardware: 'natural',
+          legs: 'natural',
+        },
       },
     };
   },
@@ -56,7 +63,7 @@ export default {
           isUpdating: false,
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          spaces: [{ id: 1, width: 100 }],
+          spaces: [{ id: 0, width: 100 }],
         },
       };
     },

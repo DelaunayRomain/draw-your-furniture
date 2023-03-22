@@ -14,18 +14,17 @@
             :shelfHeightLogic="true"
           ></shelf>
         </ul>
+        <router-link class="arrow left" to="/select-furniture"
+          >&larr;
+        </router-link>
         <legs></legs>
-        <span
-          ><router-link class="arrow left" to="/select-furniture"
-            >&larr; </router-link
-          ><router-link
-            class="arrow right"
-            @click="unlockNextPage"
-            to="/add-separators"
-          >
-            &rarr;
-          </router-link>
-        </span>
+        <router-link
+          class="arrow right"
+          @click="unlockNextPage"
+          to="/add-separators"
+        >
+          &rarr;
+        </router-link>
       </div>
       <p v-else>Completa el formulario, y se dibujara tu mueble aqui!</p>
     </div>

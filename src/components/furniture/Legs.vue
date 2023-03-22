@@ -38,6 +38,6 @@ export default {
   margin-top: -1rem;
   float: left;
   height: 30px;
-  margin-left: 8rem;
+  margin-left: 3rem;
 }
 </style>

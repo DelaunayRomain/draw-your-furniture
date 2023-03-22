@@ -38,8 +38,4 @@ export default {
 };
 </script>
 
-<style>
-rect {
-  outline: 3px solid green;
-}
-</style>
+<style></style>

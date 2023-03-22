@@ -22,6 +22,13 @@
       :fill="color"
       stroke-width="0"
     />
+    <rect
+      fill="none"
+      stroke="black"
+      stroke-width="100"
+      width="100%"
+      height="100%"
+    />
   </svg>
 </template>
 
@@ -30,3 +37,9 @@ export default {
   props: ['color'],
 };
 </script>
+
+<style>
+rect {
+  outline: 3px solid green;
+}
+</style>

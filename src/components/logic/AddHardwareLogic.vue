@@ -1,8 +1,8 @@
 <template>
   <div :style="cssStyle" class="hardware" @click="addHardwareToSpace">
     <display-hardware-handle-logic
-      :space="mySpace"
-      :shelf="myShelf"
+      :space="space"
+      :shelf="shelf"
     ></display-hardware-handle-logic>
   </div>
 </template>
@@ -12,10 +12,10 @@ import { mapGetters } from 'vuex';
 import DisplayHardwareHandleLogic from './DisplayHardwareHandleLogic.vue';
 export default {
   components: { DisplayHardwareHandleLogic },
-  props: ['mySpace', 'myShelf'],
+  props: ['space', 'shelf'],
   data() {
     return {
-      space: this.mySpace,
+      someSpace: this.space,
     };
   },
   computed: {
@@ -35,7 +35,7 @@ export default {
     },
     identifiedSpace() {
       const space = this.shelf.insideSpaces.spaces.find(
-        (space) => space.id === this.mySpace.id
+        (space) => space.id === this.space.id
       );
       return space;
     },
@@ -44,28 +44,26 @@ export default {
     addHardwareToSpace() {
       this.resetHardwareInSpace();
       this.pushHardware();
-      console.log(this.space.hardware);
       this.updateSpaceInStore();
     },
     resetHardwareInSpace() {
-      if (this.space.hardware) {
-        this.space.hardware = '';
+      if (this.someSpace.hardware) {
+        this.someSpace.hardware = '';
       }
     },
     pushHardware() {
       if (this.hardware.door === true) {
-        this.space.hardware = 'door';
+        this.someSpace.hardware = 'door';
       } else if (this.hardware.foldingDoor === true) {
-        this.space.hardware = 'foldingDoor';
+        this.someSpace.hardware = 'foldingDoor';
       } else if (this.hardware.drawer === true) {
-        this.space.hardware = 'drawer';
+        this.someSpace.hardware = 'drawer';
       }
     },
     updateSpaceInStore() {
-      this.identifiedSpace = this.space;
+      this.identifiedSpace = this.someSpace;
     },
   },
-  created() {},
 };
 </script>
 

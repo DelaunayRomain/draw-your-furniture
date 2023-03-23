@@ -3,8 +3,14 @@ export default {
     return {
       totalHeight: null,
       totalWidth: null,
+      legsHeight: null,
       shelfs: [],
-      shelfsAmount: null,
+      colorFurniture: {
+        chants: 'natural',
+        background: 'white',
+        hardware: 'natural',
+        legs: 'natural',
+      },
     };
   },
   mutations: {
@@ -22,8 +28,11 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfsAmount(state) {
-      return state.shelfsAmount;
+    legsHeight(state) {
+      return state.legsHeight;
+    },
+    colorFurniture(state) {
+      return state.colorFurniture;
     },
   },
   actions: {

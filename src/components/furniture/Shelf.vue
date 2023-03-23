@@ -1,26 +1,27 @@
 <template>
-  <div v-if="logic === 'shelfHeightLogic'">
+  <div v-if="shelfHeightLogic">
     <shelf-height-logic
-      :myShelf="myShelf"
+      :shelf="shelf"
       :style="cssStyle"
       class="shelf"
     ></shelf-height-logic>
   </div>
-  <div v-if="logic === 'addSeparatorsLogic'">
+  <div v-if="addSeparatorsLogic">
     <add-separators-logic
-      :myShelf="myShelf"
+      :shelf="shelf"
       :style="cssStyle"
       @updating-separators="emitUpdatingSeparators"
       class="shelf"
     ></add-separators-logic>
   </div>
-  <div v-if="logic === 'addHardware'" :style="cssStyle" class="shelf">
+  <div v-if="addHardware || addColor" :style="cssStyle" class="shelf">
     <space
-      v-for="space in myShelf.insideSpaces.spaces"
+      v-for="space in shelf.insideSpaces.spaces"
       :key="space.id"
-      :mySpace="space"
-      :myShelf="myShelf"
-      logic="addHardware"
+      :space="space"
+      :shelf="shelf"
+      :addHardware="addHardware"
+      :addColor="addColor"
     ></space>
   </div>
 </template>
@@ -32,18 +33,33 @@ import Space from './Space.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: { ShelfHeightLogic, Space, AddSeparatorsLogic },
-  props: ['myShelf', 'logic'],
+  props: [
+    'shelf',
+    'shelfHeightLogic',
+    'addSeparatorsLogic',
+    'addHardware',
+    'addColor',
+  ],
   emits: ['updating-separators'],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['totalWidth', 'shelfs']),
+    ...mapGetters(['totalWidth', 'shelfs', 'colorFurniture', 'colors']),
     cssStyle() {
       return {
         width: this.totalWidth * 3 + 'px',
-        height: this.myShelf.height * 3 + 'px',
+        height: this.shelf.height * 3 + 'px',
+        borderTop: this.shelf.id === 0 ? '2px solid ' + this.colorBorder : '',
+        borderLeft: '2px solid ' + this.colorBorder,
+        borderRight: '2px solid ' + this.colorBorder,
+        borderBottom: '2px solid ' + this.colorBorder,
       };
+    },
+    colorBorder() {
+      return this.addColor
+        ? this.colors[this.colorFurniture.chants]
+        : 'rgb(117, 62, 14)';
     },
   },
   methods: {
@@ -51,13 +67,14 @@ export default {
       this.$emit('updating-separators', shelf);
     },
   },
-  created() {},
 };
 </script>
 
 <style scoped>
 .shelf {
   margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
+  border-right: 2px solid rgb(117, 62, 14);
+  border-left: 2px solid rgb(117, 62, 14);
+  border-bottom: 2px solid rgb(117, 62, 14);
 }
 </style>

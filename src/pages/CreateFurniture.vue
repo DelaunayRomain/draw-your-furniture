@@ -10,22 +10,21 @@
           <shelf
             v-for="shelf in shelfs"
             :key="shelf.id"
-            :myShelf="shelf"
-            class="shelf"
-            logic="shelfHeightLogic"
+            :shelf="shelf"
+            :shelfHeightLogic="true"
           ></shelf>
         </ul>
-        <span
-          ><router-link class="arrow left" to="/select-furniture"
-            >&larr; </router-link
-          ><router-link
-            class="arrow right"
-            @click="unlockNextPage"
-            to="/add-separators"
-          >
-            &rarr;
-          </router-link>
-        </span>
+        <router-link class="arrow left" to="/select-furniture"
+          >&larr;
+        </router-link>
+        <legs></legs>
+        <router-link
+          class="arrow right"
+          @click="unlockNextPage"
+          to="/add-separators"
+        >
+          &rarr;
+        </router-link>
       </div>
       <p v-else>Completa el formulario, y se dibujara tu mueble aqui!</p>
     </div>
@@ -35,14 +34,16 @@
 <script>
 import CreateFurnitureForm from '../components/forms/CreateFurnitureForm.vue';
 import Shelf from '../components/furniture/Shelf.vue';
+import Legs from '../components/furniture/Legs.vue';
 import { mapGetters } from 'vuex';
 export default {
   components: {
     CreateFurnitureForm,
     Shelf,
+    Legs,
   },
   computed: {
-    ...mapGetters(['shelfs', 'stages']),
+    ...mapGetters(['shelfs', 'stages', 'totalWidth']),
   },
   methods: {
     unlockNextPage() {
@@ -58,7 +59,6 @@ export default {
   width: 58vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem;
-  margin-left: 1.5rem;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
@@ -71,6 +71,7 @@ export default {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .left {

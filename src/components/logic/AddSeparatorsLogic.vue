@@ -5,10 +5,10 @@
     :style="{ backgroundColor: shelfBackgroundColor }"
   >
     <space
-      v-for="space in myShelf.insideSpaces.spaces"
+      v-for="space in shelf.insideSpaces.spaces"
       :key="space.id"
-      :mySpace="space"
-      :myShelf="myShelf"
+      :space="space"
+      :shelf="shelf"
       :logic="undefined"
     ></space>
   </div>
@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex';
 import Space from '../furniture/Space.vue';
 export default {
   components: { Space },
-  props: ['myShelf'],
+  props: ['shelf'],
   emits: ['updating-separators'],
   data() {
     return {};
@@ -28,7 +28,7 @@ export default {
   computed: {
     ...mapGetters(['shelfs']),
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf.id === this.myShelf.id);
+      return this.shelfs.find((shelf) => shelf.id === this.shelf.id);
     },
     computedAmountOfSeparators() {
       return this.identifiedShelf.insideSpaces.amountOfSeparators;

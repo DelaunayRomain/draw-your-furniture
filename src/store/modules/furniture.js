@@ -1,15 +1,26 @@
 export default {
   state() {
     return {
-      totalHeight: null,
-      totalWidth: null,
+      totalHeight: 0,
+      totalWidth: 0,
+      legsHeight: 10,
       shelfs: [],
-      shelfsAmount: null,
+      colorFurniture: {
+        chants: 'natural',
+        background: 'white',
+        hardware: 'natural',
+        legs: 'natural',
+      },
     };
   },
   mutations: {
     updateShelfInStore(state, payload) {
       state.shelfs.splice(payload.shelfindex, 1, payload.newShelf);
+    },
+    addFurnitureToStore(state, payload) {
+      state.shelfs = payload.shelfs;
+      state.totalHeight = payload.height;
+      state.totalWidth = payload.width;
     },
   },
   getters: {
@@ -22,13 +33,19 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfsAmount(state) {
-      return state.shelfsAmount;
+    legsHeight(state) {
+      return state.legsHeight;
+    },
+    colorFurniture(state) {
+      return state.colorFurniture;
     },
   },
   actions: {
     updateShelfInStore(context, payload) {
       context.commit(context.updateShelfInStore, payload);
+    },
+    addFurnitureToStore(context, payload) {
+      context.commit(context.addFurnitureToStore, payload);
     },
   },
 };

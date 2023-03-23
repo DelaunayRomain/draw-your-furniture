@@ -33,9 +33,9 @@ export default {
   computed: {
     ...mapGetters(['legsHeight']),
     shelfHeight() {
-      return this.totalHeightForShelfs / this.shelfsAmount;
+      return this.heightForShelfs / this.shelfsAmount;
     },
-    totalHeightForShelfs() {
+    heightForShelfs() {
       return this.height - this.legsHeight - this.sumOfShelfsThickness;
     },
     sumOfShelfsThickness() {
@@ -46,6 +46,7 @@ export default {
         shelfs: this.someShelfs,
         height: this.height,
         width: this.width,
+        heightForShelfs: this.heightForShelfs,
       };
     },
   },

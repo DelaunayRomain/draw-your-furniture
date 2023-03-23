@@ -4,6 +4,7 @@ export default {
       totalHeight: 0,
       totalWidth: 0,
       legsHeight: 10,
+      totalHeightForShelfs: 0,
       shelfs: [],
       colorFurniture: {
         chants: 'natural',
@@ -20,6 +21,7 @@ export default {
     addFurnitureToStore(state, payload) {
       state.shelfs = payload.shelfs;
       state.totalHeight = payload.height;
+      state.totalHeightForShelfs = payload.heightForShelfs;
       state.totalWidth = payload.width;
     },
   },
@@ -28,6 +30,9 @@ export default {
       return state.shelfs;
     },
     totalHeight(state) {
+      return state.totalHeight;
+    },
+    totalHeightForShelfs(state) {
       return state.totalHeight;
     },
     totalWidth(state) {

@@ -31,7 +31,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(['legsHeight']),
     shelfHeight() {
       return this.height / this.shelfsAmount;
     },

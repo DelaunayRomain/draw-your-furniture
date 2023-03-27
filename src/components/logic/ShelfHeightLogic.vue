@@ -3,11 +3,7 @@
     <div class="shelf" :style="cssStyle" @click="openUpdateModal">
       <div v-if="isUpdating">
         <div class="update-input">
-          <input
-            type="number"
-            v-model="newHeight"
-            :placeholder="shelf.height"
-          /><span>cm</span>
+          <input type="number" v-model="newHeight" /><span>cm</span>
         </div>
       </div>
       <p v-else>{{ shelf.height }} cm</p>
@@ -25,7 +21,7 @@ export default {
   data() {
     return {
       isUpdating: false,
-      newHeight: null,
+      newHeight: this.shelf.height,
       someShelf: this.shelf,
     };
   },
@@ -67,6 +63,7 @@ export default {
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
+      console.log(this.shelf);
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;

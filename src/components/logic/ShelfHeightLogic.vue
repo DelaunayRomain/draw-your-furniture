@@ -10,7 +10,7 @@
           /><span>cm</span>
         </div>
       </div>
-      <p v-else>{{ someShelf.height }} cm</p>
+      <p v-else>{{ shelf.height }} cm</p>
     </div>
     <button v-if="isUpdating" class="button" @click="updateFurniture">
       OK
@@ -44,7 +44,7 @@ export default {
       return (
         (this.totalHeightForShelfs - this.confirmedShelfsTotalHeight) /
         this.amountOfUnconfirmedShelfs
-      );
+      ).toFixed(2);
     },
     amountOfUnconfirmedShelfs() {
       return this.shelfs.filter((shelf) => shelf.confirmed === false).length;

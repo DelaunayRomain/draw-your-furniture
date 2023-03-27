@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapGetters(['legsHeight']),
     shelfHeight() {
-      return this.heightForShelfs / this.shelfsAmount;
+      return (this.heightForShelfs / this.shelfsAmount).toFixed(2);
     },
     heightForShelfs() {
       return this.height - this.legsHeight - this.sumOfShelfsThickness;

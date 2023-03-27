@@ -57,8 +57,8 @@ export default {
       };
     },
     colorBorder() {
-      return this.colorFurniture.spot.includes('chants') && this.addColor
-        ? this.colors[this.colorFurniture.color]
+      return this.addColor
+        ? this.colors[this.colorFurniture.chants]
         : 'rgb(117, 62, 14)';
     },
   },

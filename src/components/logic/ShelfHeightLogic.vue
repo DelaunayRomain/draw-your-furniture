@@ -67,7 +67,6 @@ export default {
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
-      console.log(this.shelfs);
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;

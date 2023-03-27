@@ -25,7 +25,7 @@ export default {
     cssStyle() {
       return {
         width: this.space.width + '%',
-        borderLeft: this.space.id === 0 ? '' : '2px solid ' + this.colorBorder,
+        borderLeft: this.space.id === 0 ? '' : '5px solid ' + this.colorBorder,
       };
     },
     colorBorder() {

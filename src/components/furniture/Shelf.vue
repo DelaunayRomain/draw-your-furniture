@@ -50,10 +50,10 @@ export default {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.shelf.height * 3 + 'px',
-        borderTop: this.shelf.id === 0 ? '2px solid ' + this.colorBorder : '',
-        borderLeft: '2px solid ' + this.colorBorder,
-        borderRight: '2px solid ' + this.colorBorder,
-        borderBottom: '2px solid ' + this.colorBorder,
+        borderTop: this.shelf.id === 0 ? '5px solid ' + this.colorBorder : '',
+        borderLeft: '5px solid ' + this.colorBorder,
+        borderRight: '5px solid ' + this.colorBorder,
+        borderBottom: '5px solid ' + this.colorBorder,
       };
     },
     colorBorder() {

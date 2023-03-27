@@ -4,15 +4,15 @@
     <form @submit.prevent="createFurniture">
       <div class="furniture-input">
         <div><label>Altura en cm?</label></div>
-        <input type="number" v-model="furniture.totalHeight" />
+        <input type="number" v-model="height" />
       </div>
       <div class="furniture-input">
         <div><label>Ancho en cm?</label></div>
-        <input type="number" v-model="furniture.totalWidth" />
+        <input type="number" v-model="width" />
       </div>
       <div class="furniture-input">
         <div><label>Cuantos espacios horizontales ?</label></div>
-        <input type="number" v-model="furniture.shelfsAmount" />
+        <input type="number" v-model="shelfsAmount" />
       </div>
       <button>Ver mueble</button>
     </form>
@@ -20,31 +20,45 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      furniture: {
-        shelfs: [],
-        totalHeight: 0,
-        totalWidth: 0,
-        shelfsAmount: 0,
-      },
+      height: 0,
+      width: 0,
+      shelfsAmount: 0,
+      someShelfs: [],
     };
   },
   computed: {
+    ...mapGetters(['legsHeight']),
     shelfHeight() {
-      return this.furniture.totalHeight / this.furniture.shelfsAmount;
+      return (this.heightForShelfs / this.shelfsAmount).toFixed(2);
+    },
+    heightForShelfs() {
+      return this.height - this.legsHeight - this.sumOfShelfsThickness;
+    },
+    sumOfShelfsThickness() {
+      return (this.shelfsAmount + 1) * 1.6;
+    },
+    payload() {
+      return {
+        shelfs: this.someShelfs,
+        height: this.height,
+        width: this.width,
+        heightForShelfs: this.heightForShelfs,
+      };
     },
   },
   methods: {
     createFurniture() {
       this.createShelfs();
-      this.$store.state.furniture = this.furniture;
+      this.$store.commit('addFurnitureToStore', this.payload);
     },
     createShelfs() {
-      this.furniture.shelfs = [];
-      for (let id = 0; id < this.furniture.shelfsAmount; id++) {
-        this.furniture.shelfs.push(this.pushShelf(id));
+      this.someShelfs = [];
+      for (let id = 0; id < this.shelfsAmount; id++) {
+        this.someShelfs.push(this.pushShelf(id));
       }
     },
     pushShelf(id) {
@@ -56,7 +70,7 @@ export default {
           isUpdating: false,
           amountOfSeparators: 0,
           typeOfSeparators: 'centered',
-          spaces: [{ id: 1, width: 100 }],
+          spaces: [{ id: 0, width: 100 }],
         },
       };
     },

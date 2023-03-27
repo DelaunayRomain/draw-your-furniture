@@ -1,8 +1,6 @@
 <template>
   <keep-alive>
-    <add-separator-form
-      :someShelf="computedUpdatingShelf"
-    ></add-separator-form>
+    <add-separator-form :someShelf="computedUpdatingShelf"></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
@@ -11,21 +9,17 @@
         ><shelf
           v-for="shelf in shelfs"
           :key="shelf.id"
-          :myShelf="shelf"
+          :shelf="shelf"
           @updating-separators="passIdentifiedShelfToForm"
-          logic="addSeparatorsLogic"
+          :addSeparatorsLogic="true"
         ></shelf
       ></keep-alive>
     </ul>
-    <span
-      ><router-link class="arrow left" to="/create-furniture"
-        >&larr;</router-link
-      ><router-link
-        class="arrow right"
-        @click="unlockNextPage"
-        to="/add-hardware"
-        >&rarr;</router-link
-      ></span
+
+    <router-link class="arrow left" to="/create-furniture">&larr;</router-link>
+    <legs></legs
+    ><router-link class="arrow right" @click="unlockNextPage" to="/add-hardware"
+      >&rarr;</router-link
     >
   </section>
 </template>
@@ -33,9 +27,10 @@
 <script>
 import AddSeparatorForm from '../components/forms/AddSeparatorForm.vue';
 import Shelf from '../components/furniture/Shelf.vue';
+import Legs from '../components/furniture/Legs.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Shelf, AddSeparatorForm },
+  components: { Shelf, AddSeparatorForm, Legs },
   data() {
     return {
       updatingShelfForSeparators: '',
@@ -77,6 +72,7 @@ export default {
   font-size: 3rem;
   margin-right: 1rem;
   margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .left {

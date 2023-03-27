@@ -33,7 +33,7 @@ export default {
       return state.totalHeight;
     },
     totalHeightForShelfs(state) {
-      return state.totalHeight;
+      return state.totalHeightForShelfs;
     },
     totalWidth(state) {
       return state.totalWidth;

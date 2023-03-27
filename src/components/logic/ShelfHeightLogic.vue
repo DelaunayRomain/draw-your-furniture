@@ -30,7 +30,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['totalHeight', 'shelfs']),
+    ...mapGetters(['totalHeightForShelfs', 'shelfs']),
     cssStyle() {
       return {
         backgroundColor: this.isUpdating
@@ -42,7 +42,7 @@ export default {
     },
     newHeightForUnconfirmedShelfs() {
       return (
-        (this.totalHeight - this.confirmedShelfsTotalHeight) /
+        (this.totalHeightForShelfs - this.confirmedShelfsTotalHeight) /
         this.amountOfUnconfirmedShelfs
       );
     },
@@ -67,6 +67,7 @@ export default {
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
+      console.log(this.shelfs);
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;
@@ -86,6 +87,7 @@ export default {
       this.isUpdating = true;
     },
   },
+  created() {},
 };
 </script>
 

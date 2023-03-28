@@ -25,11 +25,15 @@ export default {
     cssStyle() {
       return {
         width: this.space.width + '%',
-        borderLeft: this.space.id === 0 ? '' : '2px solid ' + this.colorBorder,
+        borderLeft:
+          this.space.id === 0 ? 'none' : '2px solid ${this.colorBorder}',
       };
     },
+    isColorInChants() {
+      return this.colorFurniture.spot.includes('chants');
+    },
     colorBorder() {
-      return this.colorFurniture.spot.includes('chants') && this.addColor
+      return this.isColorInChants && this.addColor
         ? this.colors[this.colorFurniture.color]
         : 'rgb(117, 62, 14)';
     },

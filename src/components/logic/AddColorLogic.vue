@@ -25,13 +25,19 @@ export default {
           : this.colorBackgroundFurniture,
       };
     },
+    isColorInHardware() {
+      return this.colorFurniture.spot.includes('hardware');
+    },
+    isColorInBackground() {
+      return this.colorFurniture.spot.includes('background');
+    },
     colorHardware() {
-      return this.colorFurniture.spot.includes('hardware')
+      return this.isColorInHardware
         ? this.colors[this.colorFurniture.color]
         : this.colors.white;
     },
     colorBackgroundFurniture() {
-      return this.colorFurniture.spot.includes('background')
+      return this.isColorInBackground
         ? this.colors[this.colorFurniture.color]
         : this.colors.white;
     },

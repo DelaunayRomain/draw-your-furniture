@@ -50,14 +50,18 @@ export default {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.shelf.height * 3 + 'px',
-        borderTop: this.shelf.id === 0 ? '2px solid ' + this.colorBorder : '',
-        borderLeft: '2px solid ' + this.colorBorder,
-        borderRight: '2px solid ' + this.colorBorder,
-        borderBottom: '2px solid ' + this.colorBorder,
+        borderTop:
+          this.shelf.id === 0 ? '2px solid ${this.colorBorder}' : 'none',
+        borderLeft: '2px solid ${this.colorBorder}',
+        borderRight: '2px solid ${this.colorBorder}',
+        borderBottom: '2px solid ${this.colorBorder}',
       };
     },
+    isColorInChants() {
+      return this.colorFurniture.spot.includes('chants');
+    },
     colorBorder() {
-      return this.colorFurniture.spot.includes('chants') && this.addColor
+      return this.isColorInChants && this.addColor
         ? this.colors[this.colorFurniture.color]
         : 'rgb(117, 62, 14)';
     },

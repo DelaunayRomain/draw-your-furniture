@@ -1,9 +1,9 @@
 <template>
-  <div class="separation" :style="{ width: this.mySpace.width + '%' }">
+  <div class="separation" :style="{ width: this.space.width + '%' }">
     <div v-if="addHardware" class="space">
       <add-hardware-logic
-        :mySpace="mySpace"
-        :myShelf="myShelf"
+        :space="space"
+        :shelf="shelf"
       ></add-hardware-logic>
     </div>
   </div>
@@ -15,7 +15,7 @@ import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
 
 export default {
   components: { AddHardwareLogic },
-  props: ['mySpace', 'myShelf', 'addHardware'],
+  props: ['space', 'shelf', 'addHardware'],
   data() {
     return {};
   },

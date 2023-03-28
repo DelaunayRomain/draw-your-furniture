@@ -10,7 +10,7 @@
           /><span>cm</span>
         </div>
       </div>
-      <p v-else>{{ shelf.height }} cm</p>
+      <p v-else>{{ someShelf.height }} cm</p>
     </div>
     <button v-if="isUpdating" class="button" @click="updateFurniture">
       OK
@@ -21,12 +21,12 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  props: ['myShelf'],
+  props: ['shelf'],
   data() {
     return {
       isUpdating: false,
       newHeight: null,
-      shelf: this.myShelf,
+      someShelf: this.shelf,
     };
   },
   computed: {
@@ -35,7 +35,7 @@ export default {
       return {
         backgroundColor: this.isUpdating
           ? 'rgba(117, 62, 14, 0.2)'
-          : this.shelf.confirmed
+          : this.someShelf.confirmed
           ? 'rgba(109, 206, 128, 0.2)'
           : '',
       };
@@ -58,7 +58,7 @@ export default {
       return this.newHeight && this.newHeight > 0;
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf.id === this.shelf.id);
+      return this.shelfs.find((shelf) => shelf.id === this.someShelf.id);
     },
   },
   methods: {
@@ -70,8 +70,8 @@ export default {
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;
-      this.shelf.height = this.newHeight;
-      this.shelf.confirmed = true;
+      this.someShelf.height = this.newHeight;
+      this.someShelf.confirmed = true;
     },
     updateOtherShelfsHeights() {
       this.shelfs.forEach((shelf) => {
@@ -80,7 +80,7 @@ export default {
       });
     },
     updateShelfInStore() {
-      this.identifiedShelf = this.shelf;
+      this.identifiedShelf = this.someShelf;
     },
     openUpdateModal() {
       this.isUpdating = true;

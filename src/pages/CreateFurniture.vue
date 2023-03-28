@@ -10,7 +10,7 @@
           <shelf
             v-for="shelf in shelfs"
             :key="shelf.id"
-            :myShelf="shelf"
+            :shelf="shelf"
             class="shelf"
             :shelfHeightLogic="true"
           ></shelf>

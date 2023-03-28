@@ -5,7 +5,7 @@
       <shelf
         v-for="shelf in shelfs"
         :key="shelf.id"
-        :myShelf="shelf"
+        :shelf="shelf"
         :addHardware="true"
       ></shelf>
     </ul>

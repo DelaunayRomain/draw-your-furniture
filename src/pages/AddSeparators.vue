@@ -4,7 +4,7 @@
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
-    <ul>
+    <ul class="furniture">
       <keep-alive
         ><shelf
           v-for="shelf in shelfs"
@@ -73,6 +73,11 @@ export default {
   margin-right: 1rem;
   margin-left: 1rem;
   margin-top: 2rem;
+}
+
+.furniture {
+  margin-left: 7.9rem;
+  padding-left: 0;
 }
 
 .left {

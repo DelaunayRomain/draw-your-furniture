@@ -6,7 +6,7 @@
     <div class="show-furniture">
       <div v-if="shelfs.length > 0">
         <h1>Haz click en el espacio para cambiar su altura</h1>
-        <ul>
+        <ul class="furniture">
           <shelf
             v-for="shelf in shelfs"
             :key="shelf.id"
@@ -72,6 +72,11 @@ export default {
   margin-right: 1rem;
   margin-left: 1rem;
   margin-top: 2rem;
+}
+
+.furniture {
+  margin-left: 7.9rem;
+  padding-left: 0;
 }
 
 .left {

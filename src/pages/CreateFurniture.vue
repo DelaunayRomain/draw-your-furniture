@@ -12,7 +12,7 @@
             :key="shelf.id"
             :myShelf="shelf"
             class="shelf"
-            logic="shelfHeightLogic"
+            :shelfHeightLogic="true"
           ></shelf>
         </ul>
         <span

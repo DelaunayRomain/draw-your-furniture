@@ -6,7 +6,7 @@
         v-for="shelf in shelfs"
         :key="shelf.id"
         :myShelf="shelf"
-        logic="addHardware"
+        :addHardware="true"
       ></shelf>
     </ul>
     <span

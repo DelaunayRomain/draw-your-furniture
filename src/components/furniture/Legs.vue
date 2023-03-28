@@ -1,7 +1,15 @@
 <template>
   <div class="legs" :style="cssWidthForLegs">
-    <legs-svg class="leg left-leg" :color="colorLegs"></legs-svg>
-    <legs-svg class="leg right-leg" :color="colorLegs"></legs-svg>
+    <legs-svg
+      :addColor="addColor"
+      class="leg left-leg"
+      :color="colorLegs"
+    ></legs-svg>
+    <legs-svg
+      :addColor="addColor"
+      class="leg right-leg"
+      :color="colorLegs"
+    ></legs-svg>
   </div>
 </template>
 <script>
@@ -18,7 +26,7 @@ export default {
     colorLegs() {
       return this.addColor
         ? this.colors[this.colorFurniture.legs]
-        : 'rgb(117, 62, 14)';
+        : this.colors['black'];
     },
   },
 };

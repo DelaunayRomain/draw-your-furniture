@@ -59,7 +59,7 @@ export default {
     colorBorder() {
       return this.addColor
         ? this.colors[this.colorFurniture.chants]
-        : 'rgb(117, 62, 14)';
+        : this.colors['black'];
     },
   },
   methods: {

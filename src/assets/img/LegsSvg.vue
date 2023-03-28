@@ -24,7 +24,7 @@
     />
     <rect
       fill="none"
-      stroke="black"
+      :stroke="addColor ? 'black' : 'none'"
       stroke-width="100"
       width="100%"
       height="100%"
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  props: ['color'],
+  props: ['color', 'addColor'],
 };
 </script>
 

@@ -20,10 +20,20 @@ export default {
     ...mapGetters(['shelfs', 'hardware', 'colorFurniture', 'colors']),
     cssStyle() {
       return {
-        backgroundColor: this.space.hardware
-          ? this.colorFurniture.hardware
-          : this.colorFurniture.background,
+        backgroundColor: this.backgroundColor,
+        border: this.isBlack ? '1px solid white' : '1px solid black',
       };
+    },
+    backgroundColor() {
+      return this.space.hardware
+        ? this.colorFurniture.hardware
+        : this.colorFurniture.background;
+    },
+    isBlack() {
+      return (
+        this.colorFurniture.chants === 'black' &&
+        this.backgroundColor === 'black'
+      );
     },
   },
   methods: {},

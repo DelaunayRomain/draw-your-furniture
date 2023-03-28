@@ -72,7 +72,6 @@ export default {
 
 <style scoped>
 .shelf {
-  margin-left: 5rem;
   border-right: 2px solid rgb(117, 62, 14);
   border-left: 2px solid rgb(117, 62, 14);
   border-bottom: 2px solid rgb(117, 62, 14);

@@ -1,7 +1,7 @@
 <template>
   <section class="show-furniture">
     <h1>Elige si agregar color a tu mueble</h1>
-    <ul>
+    <ul class="furniture" :style="{ width: totalWidth * 3 + 2 + 'px' }">
       <shelf
         v-for="shelf in shelfs"
         :key="shelf.id"
@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: { Shelf, ColorForm, Legs },
   computed: {
-    ...mapGetters(['shelfs', 'stages']),
+    ...mapGetters(['shelfs', 'stages', 'totalWidth']),
   },
 };
 </script>
@@ -47,13 +47,10 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.container {
-  text-align: left;
-  vertical-align: middle;
-  margin-left: 5rem;
-  border-right: 2px solid rgb(117, 62, 14);
-  border-top: 2px solid rgb(117, 62, 14);
-  border-left: 2px solid rgb(117, 62, 14);
+.furniture {
+  border: 1px solid black;
+  margin-left: 7.9rem;
+  padding-left: 0;
 }
 
 .arrow {
@@ -71,7 +68,6 @@ h1 {
 
 .right {
   float: right;
-
   margin-right: 1rem;
 }
 </style>

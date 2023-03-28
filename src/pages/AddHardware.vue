@@ -1,7 +1,7 @@
 <template>
   <section class="show-furniture">
     <h1>... y haz click en el/los espacios de tu eleccion</h1>
-    <ul>
+    <ul class="furniture">
       <shelf
         v-for="shelf in shelfs"
         :key="shelf.id"
@@ -48,12 +48,9 @@ export default {
 h1 {
   margin-bottom: 1rem;
 }
-
-.container {
-  text-align: left;
-  vertical-align: middle;
-  margin-left: 5rem;
-  border: 2px solid rgb(117, 62, 14);
+.furniture {
+  margin-left: 7.9rem;
+  padding-left: 0;
 }
 
 .arrow {

@@ -50,10 +50,10 @@ export default {
       };
     },
     isValidWidth() {
-      return this.width < 150;
+      return this.width > 50 && this.width < 150;
     },
     isValidHeight() {
-      return this.height < 225;
+      return this.height > 120 && this.height < 225;
     },
     isValidAmountOfShelfs() {
       return this.shelfHeight > 15;

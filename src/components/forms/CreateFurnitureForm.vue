@@ -1,4 +1,11 @@
 <template>
+  <error-modal
+    :show="!!error.state"
+    title="An error ocurred"
+    @close="handleError"
+  >
+    <p>{{ error.message }}</p>
+  </error-modal>
   <section class="general-form">
     <h2>Informacion general del mueble</h2>
     <form @submit.prevent="createFurniture">
@@ -21,9 +28,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ErrorModal from './../layout/ErrorModal.vue';
 export default {
+  components: { ErrorModal },
   data() {
     return {
+      error: { state: null, message: '' },
       height: 0,
       width: 0,
       shelfsAmount: 0,
@@ -61,14 +71,22 @@ export default {
   },
   methods: {
     createFurniture() {
-      if (
-        !this.isValidHeight ||
-        !this.isValidWidth ||
-        !this.isValidAmountOfShelfs
-      )
-        return;
+      this.checkValidity();
+      if (this.error.state === true) return;
       this.createShelfs();
       this.$store.commit('addFurnitureToStore', this.payload);
+    },
+    checkValidity() {
+      if (!this.isValidHeight) {
+        this.error.state = true;
+        this.error.message = 'height is not good';
+      } else if (!this.isValidWidth) {
+        this.error.state = true;
+        this.error.message = 'width is not good';
+      } else if (!this.isValidAmountOfShelfs) {
+        this.error.state = true;
+        this.error.message = 'shelfs is not good';
+      }
     },
     createShelfs() {
       this.someShelfs = [];
@@ -88,6 +106,9 @@ export default {
           spaces: [{ id: 0, width: 100 }],
         },
       };
+    },
+    handleError() {
+      this.error = { state: null, message: '' };
     },
   },
 };

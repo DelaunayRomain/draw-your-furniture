@@ -51,7 +51,16 @@ export default {
         .reduce((acc, shelf) => acc + shelf.height, 0);
     },
     isValidHeight() {
-      return this.newHeight && this.newHeight > 0;
+      return this.newHeight && this.newHeight > 15;
+    },
+    isValidHeightForUnconfirmedShelfs() {
+      return (
+        (this.totalHeightForShelfs -
+          this.confirmedShelfsTotalHeight -
+          this.newHeight) /
+          (this.amountOfUnconfirmedShelfs - 1) >
+        15
+      );
     },
     identifiedShelf() {
       return this.shelfs.find((shelf) => shelf.id === this.someShelf.id);
@@ -59,14 +68,14 @@ export default {
   },
   methods: {
     updateFurniture() {
+      if (!this.isValidHeight || !this.isValidHeightForUnconfirmedShelfs)
+        return;
       this.updateShelfHeight();
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
-      console.log(this.shelf);
     },
     updateShelfHeight() {
-      if (!this.isValidHeight) return;
       this.someShelf.height = this.newHeight;
       this.someShelf.confirmed = true;
     },
@@ -83,7 +92,6 @@ export default {
       this.isUpdating = true;
     },
   },
-  created() {},
 };
 </script>
 

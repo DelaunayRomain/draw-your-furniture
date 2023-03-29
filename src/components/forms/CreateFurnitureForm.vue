@@ -49,9 +49,24 @@ export default {
         heightForShelfs: this.heightForShelfs,
       };
     },
+    isValidWidth() {
+      return this.width < 150;
+    },
+    isValidHeight() {
+      return this.height < 225;
+    },
+    isValidAmountOfShelfs() {
+      return this.shelfHeight > 15;
+    },
   },
   methods: {
     createFurniture() {
+      if (
+        !this.isValidHeight ||
+        !this.isValidWidth ||
+        !this.isValidAmountOfShelfs
+      )
+        return;
       this.createShelfs();
       this.$store.commit('addFurnitureToStore', this.payload);
     },

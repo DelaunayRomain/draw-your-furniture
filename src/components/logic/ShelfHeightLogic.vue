@@ -1,5 +1,12 @@
 <template>
   <div class="flex-container">
+    <error-modal
+      v-if="error.state"
+      title="An error ocurred"
+      @close="handleError"
+    >
+      <p>{{ error.message }}</p>
+    </error-modal>
     <div class="shelf" :style="cssStyle" @click="openUpdateModal">
       <div v-if="isUpdating">
         <div class="update-input">
@@ -16,10 +23,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ErrorModal from './../layout/ErrorModal.vue';
 export default {
+  components: { ErrorModal },
   props: ['shelf'],
   data() {
     return {
+      error: { state: null, message: '' },
       isUpdating: false,
       newHeight: this.shelf.height,
       someShelf: this.shelf,
@@ -68,12 +78,21 @@ export default {
   },
   methods: {
     updateFurniture() {
-      if (!this.isValidHeight || !this.isValidHeightForUnconfirmedShelfs)
-        return;
+      this.checkValidity();
+      if (this.error.state === true) return;
       this.updateShelfHeight();
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
+    },
+    checkValidity() {
+      if (!this.isValidHeight) {
+        this.error.state = true;
+        this.error.message = 'height is not good';
+      } else if (!this.isValidHeightForUnconfirmedShelfs) {
+        this.error.state = true;
+        this.error.message = 'other shelfs height is not good';
+      }
     },
     updateShelfHeight() {
       this.someShelf.height = this.newHeight;
@@ -90,6 +109,9 @@ export default {
     },
     openUpdateModal() {
       this.isUpdating = true;
+    },
+    handleError() {
+      this.error = { state: null, message: '' };
     },
   },
 };

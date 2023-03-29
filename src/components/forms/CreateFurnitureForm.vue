@@ -1,9 +1,5 @@
 <template>
-  <error-modal
-    :show="!!error.state"
-    title="An error ocurred"
-    @close="handleError"
-  >
+  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
     <p>{{ error.message }}</p>
   </error-modal>
   <section class="general-form">

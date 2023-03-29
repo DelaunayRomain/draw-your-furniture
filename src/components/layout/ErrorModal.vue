@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
-    <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <dialog open v-if="show">
+    <div @click="tryClose" class="backdrop"></div>
+    <dialog open>
       <header>
         <slot name="header">
           <h2>{{ title }}</h2>
@@ -10,7 +10,7 @@
       <section>
         <slot></slot>
       </section>
-      <menu v-if="!fixed">
+      <menu>
         <slot name="actions">
           <button @click="tryClose">Close</button>
         </slot>
@@ -21,13 +21,10 @@
 
 <script>
 export default {
-  props: ['show', 'title', 'fixed'],
+  props: ['title'],
   emits: ['close'],
   methods: {
     tryClose() {
-      if (this.fixed) {
-        return;
-      }
       this.$emit('close');
     },
   },

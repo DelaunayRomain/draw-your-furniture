@@ -47,6 +47,7 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
   props: ['someShelf'],
+  emits: ['is-valid'],
   data() {
     return {
       isUpdating: false,
@@ -87,12 +88,19 @@ export default {
         shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
       };
     },
+    isValid() {
+      return this.shelfs.every(
+        (shelf) => shelf.insideSpaces.spaces.length === 1
+      );
+    },
   },
   methods: {
     ...mapActions(['updateShelfInStore']),
     updateSeparators() {
       this.pushSpacesIntoArray();
       this.updateShelfInStore(this.payload);
+      this.checkValidity();
+      if (this.totalWidth > 80) this.$emit('is-valid', this.isValid);
     },
     pushSpacesIntoArray() {
       this.shelf.insideSpaces.spaces = [];

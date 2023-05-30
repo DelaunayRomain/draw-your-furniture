@@ -88,10 +88,12 @@ export default {
     checkValidity() {
       if (!this.isValidHeight) {
         this.error.state = true;
-        this.error.message = 'height is not good';
+        this.error.message =
+          "the height of each shelf can't be inferior to 15cm";
       } else if (!this.isValidHeightForUnconfirmedShelfs) {
         this.error.state = true;
-        this.error.message = 'other shelfs height is not good';
+        this.error.message =
+          "Remaining height for other(s) shelf(s) can't be inferior to 15cm";
       }
     },
     updateShelfHeight() {

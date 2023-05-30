@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       updatingShelfForSeparators: '',
-      error: { state: null, message: 'Separators are not good' },
+      error: { state: null, message: 'add more separators to empty shelfs' },
       isValid: true,
     };
   },

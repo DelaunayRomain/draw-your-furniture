@@ -75,13 +75,13 @@ export default {
     checkValidity() {
       if (!this.isValidHeight) {
         this.error.state = true;
-        this.error.message = 'height is not good';
+        this.error.message = 'height should be superior to 125 and inferior to 225';
       } else if (!this.isValidWidth) {
         this.error.state = true;
-        this.error.message = 'width is not good';
+        this.error.message = 'width should be superior to 50 and inferior to 150';
       } else if (!this.isValidAmountOfShelfs) {
         this.error.state = true;
-        this.error.message = 'shelfs is not good';
+        this.error.message = 'too much shelfs, the space between each shelf should be at least 15cm';
       }
     },
     createShelfs() {

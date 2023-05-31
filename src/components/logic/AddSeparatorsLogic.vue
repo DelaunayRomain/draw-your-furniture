@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
-import Space from '../furniture/Space.vue';
+import Space from "../furniture/Space.vue";
 export default {
   components: { Space },
-  props: ['shelf'],
-  emits: ['updating-separators'],
+  props: ["shelf"],
+  emits: ["updating-separators"],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(["shelfs"]),
     identifiedShelf() {
       return this.shelfs.find((shelf) => shelf.id === this.shelf.id);
     },
@@ -35,15 +35,15 @@ export default {
     },
     shelfBackgroundColor() {
       return this.identifiedShelf.insideSpaces.isUpdating === true
-        ? 'rgba(109, 206, 128, 0.2)'
-        : '';
+        ? "rgba(109, 206, 128, 0.2)"
+        : "";
     },
   },
   methods: {
     updateSeparatorsInShelf() {
       this.shelfs.forEach((shelf) => (shelf.insideSpaces.isUpdating = false));
       this.identifiedShelf.insideSpaces.isUpdating = true;
-      this.$emit('updating-separators', this.identifiedShelf);
+      this.$emit("updating-separators", this.identifiedShelf);
     },
   },
 };

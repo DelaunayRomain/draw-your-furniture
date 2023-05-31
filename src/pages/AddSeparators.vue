@@ -4,7 +4,7 @@
   </error-modal>
   <keep-alive>
     <add-separator-form
-      :someShelf="computedUpdatingShelf"
+      :some-shelf="computedUpdatingShelf"
       @is-valid="checkValidity"
     ></add-separator-form>
   </keep-alive>
@@ -31,22 +31,22 @@
 </template>
 
 <script>
-import AddSeparatorForm from '../components/forms/AddSeparatorForm.vue';
-import Shelf from '../components/furniture/Shelf.vue';
-import Legs from '../components/furniture/Legs.vue';
-import ErrorModal from './../components/layout/ErrorModal.vue';
-import { mapGetters } from 'vuex';
+import AddSeparatorForm from "../components/forms/AddSeparatorForm.vue";
+import Shelf from "../components/furniture/Shelf.vue";
+import Legs from "../components/furniture/Legs.vue";
+import ErrorModal from "./../components/layout/ErrorModal.vue";
+import { mapGetters } from "vuex";
 export default {
   components: { Shelf, AddSeparatorForm, Legs, ErrorModal },
   data() {
     return {
-      updatingShelfForSeparators: '',
-      error: { state: null, message: 'add more separators to empty shelfs' },
+      updatingShelfForSeparators: "",
+      error: { state: null, message: "add more separators to empty shelfs" },
       isValid: true,
     };
   },
   computed: {
-    ...mapGetters(['shelfs', 'stages']),
+    ...mapGetters(["shelfs", "stages"]),
     computedUpdatingShelf() {
       return this.updatingShelfForSeparators;
     },
@@ -63,7 +63,7 @@ export default {
       this.isValid = isValid;
     },
     handleError() {
-      this.error = { state: null, message: '' };
+      this.error = { state: null, message: "" };
     },
   },
 };

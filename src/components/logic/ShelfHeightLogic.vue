@@ -50,7 +50,7 @@ export default {
       return (
         (this.totalHeightForShelfs - this.confirmedShelfsTotalHeight) /
         this.amountOfUnconfirmedShelfs
-      ).toFixed(2);
+      ).toFixed(1);
     },
     amountOfUnconfirmedShelfs() {
       return this.shelfs.filter((shelf) => shelf.confirmed === false).length;
@@ -128,8 +128,8 @@ export default {
 }
 
 input {
-  margin-top: 10px;
-  width: 50px;
+  margin-top: 0.9rem;
+  width: 4rem;
 }
 
 .update-input {
@@ -139,7 +139,7 @@ input {
 
 .button {
   display: inline-block;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
 }
 
 .flex-container {

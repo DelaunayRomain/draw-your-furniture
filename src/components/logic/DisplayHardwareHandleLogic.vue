@@ -50,8 +50,8 @@ export default {
   margin: 5%;
 }
 .handle {
-  height: 12px;
-  width: 12px;
+  height: 1rem;
+  width: 1rem;
   border: solid;
   background-color: white;
   border-radius: 50%;

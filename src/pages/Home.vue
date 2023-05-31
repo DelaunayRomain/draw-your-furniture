@@ -1,10 +1,9 @@
 <template>
   <section class="home">
-    <h1>Generador de cotizaciones para muebles barquillo</h1>
+    <h1>Generador de librero a medida</h1>
     <h3>
-      Esta applicacion te permite dibujar y cotizar con nosotros un mueble a
-      medida. Que sea para soñar tu mueble perfecto, o porque realmente quieres
-      cotizarlo, ayudanos a mejorar esta app!
+      Que sea para soñar tu librero perfecto o porque realmente quieres
+      cotizarlo, disfruta el juego de crearlo tu!
     </h3>
     <button>
       <router-link

@@ -1,7 +1,8 @@
 <template>
   <header>
-    <nav>
-      <h1><router-link to="/">Muebles Barquillo</router-link></h1>
+    <nav class="nav-web">
+      <h1><router-link to="/">Dibuja tu librero!</router-link></h1>
+
       <router-link
         to="/select-furniture"
         :class="{ disabled: !stages.selectFurniture }"
@@ -33,6 +34,11 @@
       <router-link to="/color" :class="{ disabled: !stages.color }">
         5
       </router-link>
+
+      <button>ayuda</button>
+    </nav>
+    <nav class="nav-phone">
+      <h1><router-link to="/">Dibuja tu librero!</router-link></h1>
       <button>ayuda</button>
     </nav>
   </header>
@@ -49,6 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 
 header {
   width: 100%;
@@ -59,7 +66,21 @@ header {
   align-items: center;
 
   @include respond(phone) {
-    height: 10rem;
+    height: 8rem;
+  }
+}
+
+.nav-web {
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+.nav-phone {
+  display: none;
+
+  @include respond(phone) {
+    display: flex;
   }
 }
 

@@ -41,12 +41,12 @@ export default {
 
   &--right {
     float: right;
-    margin-right: 12px;
+    margin-right: 1rem;
   }
 
   &--left {
     float: left;
-    margin-left: 12px;
+    margin-left: 1rem;
   }
 }
 

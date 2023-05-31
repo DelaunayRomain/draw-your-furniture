@@ -44,17 +44,17 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 export default {
-  props: ['someShelf'],
-  emits: ['is-valid'],
+  props: ["someShelf"],
+  emits: ["is-valid"],
   data() {
     return {
       isUpdating: false,
     };
   },
   computed: {
-    ...mapGetters(['shelfs', 'totalWidth']),
+    ...mapGetters(["shelfs", "totalWidth"]),
     shelf() {
       return this.someShelf;
     },
@@ -95,12 +95,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['updateShelfInStore']),
+    ...mapActions(["updateShelfInStore"]),
     updateSeparators() {
       this.pushSpacesIntoArray();
       this.updateShelfInStore(this.payload);
       this.checkValidity();
-      if (this.totalWidth > 80) this.$emit('is-valid', this.isValid);
+      if (this.totalWidth > 80) this.$emit("is-valid", this.isValid);
     },
     pushSpacesIntoArray() {
       this.shelf.insideSpaces.spaces = [];

@@ -1,6 +1,10 @@
 <template>
   <section class="general-form">
     <h2>Separadores</h2>
+    <h4 class="description" v-if="totalWidth > 80">
+      Tu librero mide mas de 80cm de ancho, tienes que agregarle por lo menos 1
+      separador por espacio!
+    </h4>
     <div v-if="isUpdating">
       <form @submit.prevent="clearData">
         <div class="furniture-input">
@@ -11,10 +15,10 @@
             v-model.number="this.shelf.insideSpaces.amountOfSeparators"
             @change="updateSeparators"
           >
-            <option value="0">0</option>
+            <option v-if="totalWidth < 80" value="0">0</option>
             <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option v-if="totalWidth > 70" value="2">2</option>
+            <option v-if="totalWidth > 100" value="3">3</option>
           </select>
         </div>
         <div class="furniture-input">
@@ -43,13 +47,14 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
   props: ['someShelf'],
+  emits: ['is-valid'],
   data() {
     return {
       isUpdating: false,
     };
   },
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(['shelfs', 'totalWidth']),
     shelf() {
       return this.someShelf;
     },
@@ -83,12 +88,19 @@ export default {
         shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
       };
     },
+    isValid() {
+      return this.shelfs.every(
+        (shelf) => shelf.insideSpaces.spaces.length === 1
+      );
+    },
   },
   methods: {
     ...mapActions(['updateShelfInStore']),
     updateSeparators() {
       this.pushSpacesIntoArray();
       this.updateShelfInStore(this.payload);
+      this.checkValidity();
+      if (this.totalWidth > 80) this.$emit('is-valid', this.isValid);
     },
     pushSpacesIntoArray() {
       this.shelf.insideSpaces.spaces = [];
@@ -124,7 +136,7 @@ export default {
 
 <style scoped>
 h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 input {
   font: inherit;
@@ -149,6 +161,11 @@ button {
   text-align: center;
   height: 70vh;
   background-color: white;
+}
+
+.description {
+  color: red;
+  margin-bottom: 2rem;
 }
 
 .furniture-input {

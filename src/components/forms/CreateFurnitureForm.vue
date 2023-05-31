@@ -1,4 +1,7 @@
 <template>
+  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
+    <p>{{ error.message }}</p>
+  </error-modal>
   <section class="general-form">
     <h2>Informacion general del mueble</h2>
     <form @submit.prevent="createFurniture">
@@ -21,9 +24,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ErrorModal from './../layout/ErrorModal.vue';
 export default {
+  components: { ErrorModal },
   data() {
     return {
+      error: { state: null, message: '' },
       height: 0,
       width: 0,
       shelfsAmount: 0,
@@ -49,11 +55,34 @@ export default {
         heightForShelfs: this.heightForShelfs,
       };
     },
+    isValidWidth() {
+      return this.width > 50 && this.width < 150;
+    },
+    isValidHeight() {
+      return this.height > 120 && this.height < 225;
+    },
+    isValidAmountOfShelfs() {
+      return this.shelfHeight > 15;
+    },
   },
   methods: {
     createFurniture() {
+      this.checkValidity();
+      if (this.error.state === true) return;
       this.createShelfs();
       this.$store.commit('addFurnitureToStore', this.payload);
+    },
+    checkValidity() {
+      if (!this.isValidHeight) {
+        this.error.state = true;
+        this.error.message = 'height should be superior to 125 and inferior to 225';
+      } else if (!this.isValidWidth) {
+        this.error.state = true;
+        this.error.message = 'width should be superior to 50 and inferior to 150';
+      } else if (!this.isValidAmountOfShelfs) {
+        this.error.state = true;
+        this.error.message = 'too much shelfs, the space between each shelf should be at least 15cm';
+      }
     },
     createShelfs() {
       this.someShelfs = [];
@@ -73,6 +102,9 @@ export default {
           spaces: [{ id: 0, width: 100 }],
         },
       };
+    },
+    handleError() {
+      this.error = { state: null, message: '' };
     },
   },
 };

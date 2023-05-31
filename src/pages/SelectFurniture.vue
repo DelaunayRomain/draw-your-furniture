@@ -6,7 +6,9 @@
       class="furniture--img"
       src="./../assets/img/librero-unitario.jpeg"
       alt=""
-  /></router-link>
+    />
+    <h4 class="description">(maximum 225cm alto y 150cm ancho)</h4></router-link
+  >
   <div class="furniture">
     <h2 class="furniture--name">Pronto otras opciones...</h2>
   </div>
@@ -34,7 +36,7 @@ h1 {
 }
 .furniture {
   width: 30vw;
-  height: 70vh;
+  height: 80vh;
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -43,10 +45,10 @@ h1 {
   margin: 1rem;
   border-radius: 10px;
   background-color: white;
+}
 
-  :hover {
-    transform: scale(2);
-  }
+.description {
+  text-align: center;
 }
 
 .furniture--name {
@@ -55,6 +57,7 @@ h1 {
 
 .furniture--img {
   position: absolute;
+  margin-top: 2rem;
   left: 50%;
   max-width: 90%;
   max-height: 80%;

@@ -1,5 +1,12 @@
 <template>
   <div class="flex-container">
+    <error-modal
+      v-if="error.state"
+      title="An error ocurred"
+      @close="handleError"
+    >
+      <p>{{ error.message }}</p>
+    </error-modal>
     <div class="shelf" :style="cssStyle" @click="openUpdateModal">
       <div v-if="isUpdating">
         <div class="update-input">
@@ -16,10 +23,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ErrorModal from './../layout/ErrorModal.vue';
 export default {
+  components: { ErrorModal },
   props: ['shelf'],
   data() {
     return {
+      error: { state: null, message: '' },
       isUpdating: false,
       newHeight: this.shelf.height,
       someShelf: this.shelf,
@@ -51,7 +61,16 @@ export default {
         .reduce((acc, shelf) => acc + shelf.height, 0);
     },
     isValidHeight() {
-      return this.newHeight && this.newHeight > 0;
+      return this.newHeight && this.newHeight > 15;
+    },
+    isValidHeightForUnconfirmedShelfs() {
+      return (
+        (this.totalHeightForShelfs -
+          this.confirmedShelfsTotalHeight -
+          this.newHeight) /
+          (this.amountOfUnconfirmedShelfs - 1) >
+        15
+      );
     },
     identifiedShelf() {
       return this.shelfs.find((shelf) => shelf.id === this.someShelf.id);
@@ -59,14 +78,25 @@ export default {
   },
   methods: {
     updateFurniture() {
+      this.checkValidity();
+      if (this.error.state === true) return;
       this.updateShelfHeight();
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
       this.isUpdating = false;
-      console.log(this.shelf);
+    },
+    checkValidity() {
+      if (!this.isValidHeight) {
+        this.error.state = true;
+        this.error.message =
+          "the height of each shelf can't be inferior to 15cm";
+      } else if (!this.isValidHeightForUnconfirmedShelfs) {
+        this.error.state = true;
+        this.error.message =
+          "Remaining height for other(s) shelf(s) can't be inferior to 15cm";
+      }
     },
     updateShelfHeight() {
-      if (!this.isValidHeight) return;
       this.someShelf.height = this.newHeight;
       this.someShelf.confirmed = true;
     },
@@ -82,8 +112,10 @@ export default {
     openUpdateModal() {
       this.isUpdating = true;
     },
+    handleError() {
+      this.error = { state: null, message: '' };
+    },
   },
-  created() {},
 };
 </script>
 

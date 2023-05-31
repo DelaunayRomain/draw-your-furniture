@@ -1,6 +1,12 @@
 <template>
+  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
+    <p>{{ error.message }}</p>
+  </error-modal>
   <keep-alive>
-    <add-separator-form :someShelf="computedUpdatingShelf"></add-separator-form>
+    <add-separator-form
+      :someShelf="computedUpdatingShelf"
+      @is-valid="checkValidity"
+    ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>
@@ -28,12 +34,15 @@
 import AddSeparatorForm from '../components/forms/AddSeparatorForm.vue';
 import Shelf from '../components/furniture/Shelf.vue';
 import Legs from '../components/furniture/Legs.vue';
+import ErrorModal from './../components/layout/ErrorModal.vue';
 import { mapGetters } from 'vuex';
 export default {
-  components: { Shelf, AddSeparatorForm, Legs },
+  components: { Shelf, AddSeparatorForm, Legs, ErrorModal },
   data() {
     return {
       updatingShelfForSeparators: '',
+      error: { state: null, message: 'add more separators to empty shelfs' },
+      isValid: true,
     };
   },
   computed: {
@@ -44,10 +53,17 @@ export default {
   },
   methods: {
     unlockNextPage() {
+      if (!this.isValid) this.error.state = true;
       this.stages.addHardware = true;
     },
     passIdentifiedShelfToForm(shelf) {
       this.updatingShelfForSeparators = shelf;
+    },
+    checkValidity(isValid) {
+      this.isValid = isValid;
+    },
+    handleError() {
+      this.error = { state: null, message: '' };
     },
   },
 };

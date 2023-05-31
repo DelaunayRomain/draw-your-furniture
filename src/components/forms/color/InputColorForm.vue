@@ -15,17 +15,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  props: ['spot'],
+  props: ["spot"],
   data() {
     return {
-      color: 'natural',
+      color: "natural",
     };
   },
   computed: {
-    ...mapGetters(['colorFurniture']),
+    ...mapGetters(["colorFurniture"]),
   },
   methods: {
     updateStore() {
@@ -34,5 +34,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

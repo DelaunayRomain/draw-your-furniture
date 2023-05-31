@@ -22,9 +22,14 @@
       ></keep-alive>
     </ul>
 
-    <router-link class="arrow left" to="/create-furniture">&larr;</router-link>
+    <router-link class="arrow arrow--left" to="/create-furniture"
+      >&larr;</router-link
+    >
     <legs></legs
-    ><router-link class="arrow right" @click="unlockNextPage" to="/add-hardware"
+    ><router-link
+      class="arrow arrow--right"
+      @click="unlockNextPage"
+      to="/add-hardware"
       >&rarr;</router-link
     >
   </section>
@@ -69,38 +74,9 @@ export default {
 };
 </script>
 
-<style scoped>
-.show-furniture {
-  float: right;
-  width: 58vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-left: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  background-color: white;
-}
-
-.arrow {
-  text-decoration: none;
-  color: black;
-  font-size: 3rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  margin-top: 2rem;
-}
-
-.furniture {
-  margin-left: 7.9rem;
-  padding-left: 0;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+@import "../assets/styles/furniture.scss";
+@import "../assets/styles/arrows.scss";
 </style>

@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['hardware', 'shelfs']),
+    ...mapGetters(["hardware", "shelfs"]),
     styleIfUnlocked() {
       return {
-        transform: 'scale(1.5)',
+        transform: "scale(1.5)",
       };
     },
   },
@@ -53,14 +53,17 @@ export default {
     resetFurnitureHardware() {
       this.resetHardware();
       this.shelfs.forEach(function (shelf) {
-        shelf.insideSpaces.spaces.forEach((space) => (space.hardware = ''));
+        shelf.insideSpaces.spaces.forEach((space) => (space.hardware = ""));
       });
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
+@import "../../assets/styles/forms.scss";
 .hardware {
   text-align: center;
   margin: 3rem;
@@ -69,26 +72,17 @@ export default {
   cursor: pointer;
   border: solid;
   font-size: 1.2rem;
-}
-.hardware--door {
-  background-color: rgb(255, 127, 80);
-}
-.hardware--folding-door {
-  background-color: rgb(189, 183, 107);
-}
-.hardware--drawer {
-  background-color: rgb(0, 139, 139);
-}
-.general-form {
-  float: left;
-  width: 28vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-right: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  min-height: 70vh;
-  background-color: white;
+
+  &--door {
+    background-color: rgb(255, 127, 80);
+  }
+
+  &--folding-door {
+    background-color: rgb(189, 183, 107);
+  }
+
+  &--drawer {
+    background-color: rgb(0, 139, 139);
+  }
 }
 </style>

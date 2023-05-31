@@ -13,19 +13,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
-  props: ['space', 'shelf'],
+  props: ["space", "shelf"],
   computed: {
-    ...mapGetters(['shelfs']),
+    ...mapGetters(["shelfs"]),
     doorSide() {
-      return this.space.id === 0 ? 'right' : 'left';
+      return this.space.id === 0 ? "right" : "left";
     },
     doorMarginTop() {
-      return this.isDoorInHighPosition ? this.marginTopForDownHandle : '5%';
+      return this.isDoorInHighPosition ? this.marginTopForDownHandle : "5%";
     },
     marginTopForDownHandle() {
-      return this.shelf.height * 3 * 0.8 + 'px';
+      return this.shelf.height * 3 * 0.8 + "px";
     },
     isDoorInHighPosition() {
       return this.shelfHeightFromTheGround > 150;
@@ -43,7 +43,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .door {
   margin: 5%;
 }

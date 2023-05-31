@@ -1,6 +1,6 @@
 <template>
   <section class="general-form">
-    <h2>Separadores</h2>
+    <h1>Separadores</h1>
     <h4 class="description" v-if="totalWidth > 80">
       Tu librero mide mas de 80cm de ancho, tienes que agregarle por lo menos 1
       separador por espacio!
@@ -134,10 +134,11 @@ export default {
 };
 </script>
 
-<style scoped>
-h2 {
-  margin-bottom: 1rem;
-}
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
+@import "../../assets/styles/forms.scss";
+
 input {
   font: inherit;
   padding: 0.15rem;
@@ -149,18 +150,6 @@ label {
 button {
   margin-top: 2rem;
   font-size: 1.3rem;
-}
-.general-form {
-  float: left;
-  width: 28vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-right: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  height: 70vh;
-  background-color: white;
 }
 
 .description {

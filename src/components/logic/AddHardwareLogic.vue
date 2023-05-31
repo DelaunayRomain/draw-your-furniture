@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import DisplayHardwareHandleLogic from './DisplayHardwareHandleLogic.vue';
+import { mapGetters } from "vuex";
+import DisplayHardwareHandleLogic from "./DisplayHardwareHandleLogic.vue";
 export default {
   components: { DisplayHardwareHandleLogic },
-  props: ['space', 'shelf'],
+  props: ["space", "shelf"],
   data() {
     return {
       someSpace: this.space,
     };
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware']),
+    ...mapGetters(["shelfs", "hardware"]),
     cssStyle() {
       return {
         backgroundColor: this.backgroundColor,
@@ -27,9 +27,9 @@ export default {
     },
     backgroundColor() {
       const hardwareObject = {
-        door: 'rgb(255, 127, 80)',
-        foldingDoor: 'rgb(189, 183, 107)',
-        drawer: 'rgb(0, 139, 139)',
+        door: "rgb(255, 127, 80)",
+        foldingDoor: "rgb(189, 183, 107)",
+        drawer: "rgb(0, 139, 139)",
       };
       return hardwareObject[this.space.hardware];
     },
@@ -48,16 +48,16 @@ export default {
     },
     resetHardwareInSpace() {
       if (this.someSpace.hardware) {
-        this.someSpace.hardware = '';
+        this.someSpace.hardware = "";
       }
     },
     pushHardware() {
       if (this.hardware.door === true) {
-        this.someSpace.hardware = 'door';
+        this.someSpace.hardware = "door";
       } else if (this.hardware.foldingDoor === true) {
-        this.someSpace.hardware = 'foldingDoor';
+        this.someSpace.hardware = "foldingDoor";
       } else if (this.hardware.drawer === true) {
-        this.someSpace.hardware = 'drawer';
+        this.someSpace.hardware = "drawer";
       }
     },
     updateSpaceInStore() {
@@ -67,7 +67,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .hardware {
   width: 100%;
   height: 100%;

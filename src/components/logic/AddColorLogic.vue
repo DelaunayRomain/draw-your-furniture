@@ -8,20 +8,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import DisplayHardwareHandleLogic from './DisplayHardwareHandleLogic.vue';
+import { mapGetters } from "vuex";
+import DisplayHardwareHandleLogic from "./DisplayHardwareHandleLogic.vue";
 export default {
   components: { DisplayHardwareHandleLogic },
-  props: ['space', 'shelf'],
+  props: ["space", "shelf"],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'hardware', 'colorFurniture', 'colors']),
+    ...mapGetters(["shelfs", "hardware", "colorFurniture", "colors"]),
     cssStyle() {
       return {
         backgroundColor: this.backgroundColor,
-        border: this.isBlack ? '1px solid white' : '1px solid black',
+        border: this.isBlack ? "1px solid white" : "1px solid black",
       };
     },
     backgroundColor() {
@@ -31,8 +31,8 @@ export default {
     },
     isBlack() {
       return (
-        this.colorFurniture.chants === 'black' &&
-        this.backgroundColor === 'black'
+        this.colorFurniture.chants === "black" &&
+        this.backgroundColor === "black"
       );
     },
   },
@@ -40,7 +40,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .hardware {
   width: 100%;
   height: 100%;

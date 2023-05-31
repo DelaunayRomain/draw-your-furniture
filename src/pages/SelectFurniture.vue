@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(['stages']),
+    ...mapGetters(["stages"]),
   },
   methods: {
     unlockNextPage() {
@@ -29,7 +29,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+
 h1 {
   margin-top: 2rem;
   text-align: center;
@@ -45,23 +48,23 @@ h1 {
   margin: 1rem;
   border-radius: 10px;
   background-color: white;
+
+  &--name {
+    text-align: center;
+  }
+
+  &--img {
+    position: absolute;
+    margin-top: 2rem;
+    left: 50%;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 5px;
+    transform: translateX(-50%);
+  }
 }
 
 .description {
   text-align: center;
-}
-
-.furniture--name {
-  text-align: center;
-}
-
-.furniture--img {
-  position: absolute;
-  margin-top: 2rem;
-  left: 50%;
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 5px;
-  transform: translateX(-50%);
 }
 </style>

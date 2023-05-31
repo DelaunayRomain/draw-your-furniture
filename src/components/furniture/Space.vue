@@ -10,28 +10,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import AddHardwareLogic from '../logic/AddHardwareLogic.vue';
-import AddColorLogic from '../logic/AddColorLogic.vue';
+import { mapGetters } from "vuex";
+import AddHardwareLogic from "../logic/AddHardwareLogic.vue";
+import AddColorLogic from "../logic/AddColorLogic.vue";
 
 export default {
   components: { AddHardwareLogic, AddColorLogic },
-  props: ['space', 'shelf', 'addHardware', 'addColor'],
+  props: ["space", "shelf", "addHardware", "addColor"],
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(['shelfs', 'colorFurniture', 'colors']),
+    ...mapGetters(["shelfs", "colorFurniture", "colors"]),
     cssStyle() {
       return {
-        width: this.space.width + '%',
-        borderLeft: this.space.id === 0 ? '' : '5px solid ' + this.colorBorder,
+        width: this.space.width + "%",
+        borderLeft: this.space.id === 0 ? "" : "5px solid " + this.colorBorder,
       };
     },
     colorBorder() {
       return this.addColor
         ? this.colors[this.colorFurniture.chants]
-        : this.colors['black'];
+        : this.colors["black"];
     },
   },
   methods: {},
@@ -39,7 +39,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .separation {
   display: inline-block;
   height: 100%;

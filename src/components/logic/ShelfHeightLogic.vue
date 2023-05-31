@@ -22,28 +22,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ErrorModal from './../layout/ErrorModal.vue';
+import { mapGetters } from "vuex";
+import ErrorModal from "./../layout/ErrorModal.vue";
 export default {
   components: { ErrorModal },
-  props: ['shelf'],
+  props: ["shelf"],
   data() {
     return {
-      error: { state: null, message: '' },
+      error: { state: null, message: "" },
       isUpdating: false,
       newHeight: this.shelf.height,
       someShelf: this.shelf,
     };
   },
   computed: {
-    ...mapGetters(['totalHeightForShelfs', 'shelfs']),
+    ...mapGetters(["totalHeightForShelfs", "shelfs"]),
     cssStyle() {
       return {
         backgroundColor: this.isUpdating
-          ? 'rgba(117, 62, 14, 0.2)'
+          ? "rgba(117, 62, 14, 0.2)"
           : this.someShelf.confirmed
-          ? 'rgba(109, 206, 128, 0.2)'
-          : '',
+          ? "rgba(109, 206, 128, 0.2)"
+          : "",
       };
     },
     newHeightForUnconfirmedShelfs() {
@@ -113,13 +113,15 @@ export default {
       this.isUpdating = true;
     },
     handleError() {
-      this.error = { state: null, message: '' };
+      this.error = { state: null, message: "" };
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .shelf {
   width: 100%;
   height: 100%;

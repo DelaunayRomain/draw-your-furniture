@@ -3,7 +3,7 @@
     <p>{{ error.message }}</p>
   </error-modal>
   <section class="general-form">
-    <h2>Informacion general del mueble</h2>
+    <h1>Informacion general del mueble</h1>
     <form @submit.prevent="createFurniture">
       <div class="furniture-input">
         <div><label>Altura en cm?</label></div>
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ErrorModal from './../layout/ErrorModal.vue';
+import { mapGetters } from "vuex";
+import ErrorModal from "./../layout/ErrorModal.vue";
 export default {
   components: { ErrorModal },
   data() {
     return {
-      error: { state: null, message: '' },
+      error: { state: null, message: "" },
       height: 0,
       width: 0,
       shelfsAmount: 0,
@@ -37,7 +37,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['legsHeight']),
+    ...mapGetters(["legsHeight"]),
     shelfHeight() {
       return (this.heightForShelfs / this.shelfsAmount).toFixed(2);
     },
@@ -70,18 +70,21 @@ export default {
       this.checkValidity();
       if (this.error.state === true) return;
       this.createShelfs();
-      this.$store.commit('addFurnitureToStore', this.payload);
+      this.$store.commit("addFurnitureToStore", this.payload);
     },
     checkValidity() {
       if (!this.isValidHeight) {
         this.error.state = true;
-        this.error.message = 'height should be superior to 125 and inferior to 225';
+        this.error.message =
+          "height should be superior to 125 and inferior to 225";
       } else if (!this.isValidWidth) {
         this.error.state = true;
-        this.error.message = 'width should be superior to 50 and inferior to 150';
+        this.error.message =
+          "width should be superior to 50 and inferior to 150";
       } else if (!this.isValidAmountOfShelfs) {
         this.error.state = true;
-        this.error.message = 'too much shelfs, the space between each shelf should be at least 15cm';
+        this.error.message =
+          "too much shelfs, the space between each shelf should be at least 15cm";
       }
     },
     createShelfs() {
@@ -98,22 +101,23 @@ export default {
         insideSpaces: {
           isUpdating: false,
           amountOfSeparators: 0,
-          typeOfSeparators: 'centered',
+          typeOfSeparators: "centered",
           spaces: [{ id: 0, width: 100 }],
         },
       };
     },
     handleError() {
-      this.error = { state: null, message: '' };
+      this.error = { state: null, message: "" };
     },
   },
 };
 </script>
 
-<style scoped>
-h2 {
-  margin-bottom: 3rem;
-}
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
+@import "../../assets/styles/forms.scss";
+
 input {
   font: inherit;
   padding: 0.15rem;
@@ -126,19 +130,6 @@ button {
   margin-top: 2rem;
   font-size: 1.3rem;
 }
-.general-form {
-  float: left;
-  width: 28vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-right: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  height: 70vh;
-  background-color: white;
-}
-
 .furniture-input {
   margin-bottom: 2rem;
 }

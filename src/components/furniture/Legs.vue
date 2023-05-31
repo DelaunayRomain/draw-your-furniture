@@ -2,50 +2,52 @@
   <div class="legs" :style="cssWidthForLegs">
     <legs-svg
       :addColor="addColor"
-      class="leg left-leg"
+      class="leg leg--left"
       :color="colorLegs"
     ></legs-svg>
     <legs-svg
       :addColor="addColor"
-      class="leg right-leg"
+      class="leg leg--right"
       :color="colorLegs"
     ></legs-svg>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-import LegsSvg from './../../assets/img/LegsSvg.vue';
+import { mapGetters } from "vuex";
+import LegsSvg from "./../../assets/img/LegsSvg.vue";
 export default {
   components: { LegsSvg },
-  props: ['addColor'],
+  props: ["addColor"],
   computed: {
-    ...mapGetters(['totalWidth', 'colorFurniture', 'colors']),
+    ...mapGetters(["totalWidth", "colorFurniture", "colors"]),
     cssWidthForLegs() {
-      return { width: this.totalWidth * 3 + 'px' };
+      return { width: this.totalWidth * 3 + "px" };
     },
     colorLegs() {
       return this.addColor
         ? this.colors[this.colorFurniture.legs]
-        : this.colors['black'];
+        : this.colors["black"];
     },
   },
 };
 </script>
 
-<style scoped>
-.left-leg {
-  float: left;
-  margin-left: 12px;
-}
-
-.right-leg {
-  float: right;
-  margin-right: 12px;
-}
-
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .leg {
   height: 100%;
   width: auto;
+
+  &--right {
+    float: right;
+    margin-right: 12px;
+  }
+
+  &--left {
+    float: left;
+    margin-left: 12px;
+  }
 }
 
 .legs {

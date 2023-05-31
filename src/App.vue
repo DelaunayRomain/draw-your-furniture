@@ -14,14 +14,8 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-@mixin respond($breakpoint) {
-  @if $breakpoint == phone {
-    @media screen and (max-width: 37.5em) {
-      @content;
-    }
-  }
-}
+@import "./assets/styles/mixins.scss";
+@import "./assets/styles/constants.scss";
 
 * {
   box-sizing: border-box;
@@ -32,7 +26,7 @@ html {
   font-size: 100%;
 
   @include respond(phone) {
-    font-size: 45%;
+    font-size: 80%;
   }
 }
 

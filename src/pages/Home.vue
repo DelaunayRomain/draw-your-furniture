@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(['stages']),
+    ...mapGetters(["stages"]),
   },
   methods: {
     unlockNextPage() {
@@ -31,7 +31,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+
 .home {
   background-color: beige;
   text-align: center;

@@ -26,20 +26,10 @@ export default {
 };
 </script>
 
-<style scoped>
-.general-form {
-  float: left;
-  width: 28vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-right: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  min-height: 70vh;
-  background-color: white;
-}
-
+<style lang="scss" scoped>
+@import "../../../assets/styles/mixins.scss";
+@import "../../../assets/styles/constants.scss";
+@import "../../../assets/styles/forms.scss";
 .input {
   text-align: left;
   margin-bottom: 2rem;

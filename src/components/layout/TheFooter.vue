@@ -1,9 +1,9 @@
 <template>
   <footer>
-    <router-link class="arrow arrow--left" to="/create-furniture"
+    <router-link class="arrow arrow--left" :to="beforePath" :style="beforeStyle"
       >&larr;</router-link
     >
-    <router-link class="arrow arrow--right" to="/add-hardware"
+    <router-link class="arrow arrow--right" :to="nextPath" :style="nextStyle"
       >&rarr;</router-link
     >
   </footer>
@@ -12,8 +12,54 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      path: {
+        "/": {
+          next: undefined,
+          before: undefined,
+        },
+        "/select-furniture": {
+          next: "/create-furniture",
+          before: undefined,
+        },
+        "/create-furniture": {
+          next: "/add-separators",
+          before: "/select-furniture",
+        },
+        "/add-separators": {
+          next: "/add-hardware",
+          before: "/create-furniture",
+        },
+        "/add-hardware": {
+          next: "/color",
+          before: "/add-separators",
+        },
+        "/color": {
+          next: undefined,
+          before: "/add-hardware",
+        },
+      },
+    };
+  },
   computed: {
     ...mapGetters(["stages"]),
+    beforePath() {
+      return !this.path[this.$route.path].before
+        ? this.path[this.$route.path]
+        : this.path[this.$route.path].before;
+    },
+    nextPath() {
+      return !this.path[this.$route.path].next
+        ? this.path[this.$route.path]
+        : this.path[this.$route.path].next;
+    },
+    beforeStyle() {
+      return !this.path[this.$route.path].before ? { display: "none" } : "";
+    },
+    nextStyle() {
+      return !this.path[this.$route.path].next ? { display: "none" } : "";
+    },
   },
 };
 </script>

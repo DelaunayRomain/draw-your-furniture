@@ -1,4 +1,5 @@
 <template>
+  <color-form></color-form>
   <section class="show-furniture">
     <h1>Elige si agregar color a tu mueble</h1>
     <ul class="furniture" :style="{ width: totalWidth * 3 + 2 + 'px' }">
@@ -14,9 +15,8 @@
       >&larr;</router-link
     >
     <legs :addColor="true"></legs>
-    <button class="arrow--right">Generar cotizacion</button>
+    <button class="arrow--right btn">Generar cotizacion</button>
   </section>
-  <color-form></color-form>
 </template>
 
 <script>
@@ -40,5 +40,17 @@ export default {
 
 .furniture {
   border: 1px solid black;
+}
+
+.btn {
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+h1 {
+  @include respond(phone) {
+    margin-top: -1rem;
+  }
 }
 </style>

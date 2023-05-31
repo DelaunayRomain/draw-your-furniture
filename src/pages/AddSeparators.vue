@@ -79,4 +79,10 @@ export default {
 @import "../assets/styles/constants.scss";
 @import "../assets/styles/furniture.scss";
 @import "../assets/styles/arrows.scss";
+
+h1 {
+  @include respond(phone) {
+    display: none;
+  }
+}
 </style>

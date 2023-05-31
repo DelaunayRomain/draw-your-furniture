@@ -2,7 +2,7 @@
   <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
     <p>{{ error.message }}</p>
   </error-modal>
-  <section class="general-form">
+  <section class="general-form" v-if="!shelfs.length > 0">
     <h1>Informacion general del mueble</h1>
     <form @submit.prevent="createFurniture">
       <div class="furniture-input">
@@ -37,7 +37,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["legsHeight"]),
+    ...mapGetters(["legsHeight", "shelfs"]),
     shelfHeight() {
       return (this.heightForShelfs / this.shelfsAmount).toFixed(1);
     },

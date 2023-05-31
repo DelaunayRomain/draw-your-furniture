@@ -9,7 +9,7 @@
     />
     <h4 class="description">(maximum 225cm alto y 150cm ancho)</h4></router-link
   >
-  <div class="furniture">
+  <div class="furniture furniture--others">
     <h2 class="furniture--name">Pronto otras opciones...</h2>
   </div>
 </template>
@@ -48,6 +48,18 @@ h1 {
   margin: 1rem;
   border-radius: 10px;
   background-color: white;
+
+  @include respond(phone) {
+    width: 90vw;
+    margin-left: 5vw;
+  }
+
+  &--others {
+    @include respond(phone) {
+      height: auto;
+      margin-bottom: 8rem;
+    }
+  }
 
   &--name {
     text-align: center;

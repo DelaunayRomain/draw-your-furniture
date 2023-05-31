@@ -1,6 +1,7 @@
 <template>
+  <add-hardware-form></add-hardware-form>
   <section class="show-furniture">
-    <h1>... y haz click en el/los espacios de tu eleccion</h1>
+    <h1>Selectionna el/los espacios de tu eleccion</h1>
     <ul class="furniture">
       <shelf
         v-for="shelf in shelfs"
@@ -20,7 +21,6 @@
       >&rarr;</router-link
     >
   </section>
-  <add-hardware-form></add-hardware-form>
 </template>
 
 <script>
@@ -42,4 +42,10 @@ export default {
 @import "../assets/styles/constants.scss";
 @import "../assets/styles/furniture.scss";
 @import "../assets/styles/arrows.scss";
+
+h1 {
+  @include respond(phone) {
+    margin-top: -1rem;
+  }
+}
 </style>

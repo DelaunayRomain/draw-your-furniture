@@ -55,5 +55,9 @@ export default {
   float: left;
   height: 30px;
   margin-left: 3rem;
+
+  @include respond(phone) {
+    margin: 0 auto;
+  }
 }
 </style>

@@ -13,4 +13,8 @@
   &--right {
     float: right;
   }
+
+  @include respond(phone) {
+    display: none;
+  }
 }

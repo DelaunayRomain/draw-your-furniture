@@ -54,6 +54,9 @@ h3 {
 
 button {
   transform: translateX(20rem);
+  @include respond(phone) {
+    transform: translateX(0);
+  }
 }
 
 .router-link {

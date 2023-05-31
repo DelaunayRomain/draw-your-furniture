@@ -36,5 +36,9 @@ html {
 body {
   margin: 0;
   background-color: beige;
+
+  @include respond(phone) {
+    background-color: rgb(248, 248, 255);
+  }
 }
 </style>

@@ -64,10 +64,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @include respond(phone) {
-    height: 8rem;
-  }
 }
 
 .nav-web {

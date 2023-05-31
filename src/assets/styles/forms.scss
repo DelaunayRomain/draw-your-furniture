@@ -9,4 +9,14 @@
   text-align: center;
   min-height: 70vh;
   background-color: white;
+
+  @include respond(phone) {
+    float: none;
+    text-align: center;
+    display: inline-block;
+    width: 90vw;
+    margin: 2rem 5vw;
+    padding: 2rem auto;
+    min-height: 0;
+  }
 }

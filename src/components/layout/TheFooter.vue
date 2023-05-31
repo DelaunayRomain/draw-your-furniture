@@ -1,9 +1,15 @@
 <template>
   <footer>
-    <router-link class="arrow arrow--left" :to="beforePath" :style="beforeStyle"
+    <router-link
+      class="arrow arrow--left arrow--footer"
+      :to="beforePath"
+      :style="beforeStyle"
       >&larr;</router-link
     >
-    <router-link class="arrow arrow--right" :to="nextPath" :style="nextStyle"
+    <router-link
+      class="arrow arrow--right arrow--footer"
+      :to="nextPath"
+      :style="nextStyle"
       >&rarr;</router-link
     >
   </footer>
@@ -82,6 +88,12 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.arrow--footer {
+  @include respond(phone) {
+    display: inline-block;
   }
 }
 </style>

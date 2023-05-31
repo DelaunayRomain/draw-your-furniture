@@ -1,17 +1,18 @@
 <template>
   <section class="general-form">
     <h1>Separadores</h1>
-    <h4 class="description" v-if="totalWidth > 80">
+    <h4 class="description" v-if="totalWidth > 80 && isUpdating">
       Tu librero mide mas de 80cm de ancho, tienes que agregarle por lo menos 1
       separador por espacio!
     </h4>
     <div v-if="isUpdating">
       <form @submit.prevent="clearData">
         <div class="furniture-input">
-          <label>Cuantos Separadores ?</label>
+          <label>Cantidad de separadores:</label>
           <select
             name="amountOfSeparators"
             id="amountOfSeparators"
+            class="input"
             v-model.number="this.shelf.insideSpaces.amountOfSeparators"
             @change="updateSeparators"
           >
@@ -22,10 +23,11 @@
           </select>
         </div>
         <div class="furniture-input">
-          <label>Que orientacion ?</label>
+          <label>Symetrico/asymetrico :</label>
           <select
             name="typeOfSeparators"
             id="typeOfSeparators"
+            class="input"
             v-model="shelf.insideSpaces.typeOfSeparators"
             @change="updateSeparators"
           >
@@ -38,7 +40,9 @@
       </form>
     </div>
     <div v-else>
-      <h2>Haz click en el espacio para agregar separadores</h2>
+      <h2>
+        Haz click a dentro de un espacio del mueble para agregar separadores
+      </h2>
     </div>
   </section>
 </template>
@@ -139,10 +143,18 @@ export default {
 @import "../../assets/styles/constants.scss";
 @import "../../assets/styles/forms.scss";
 
-input {
+.input {
   font: inherit;
   padding: 0.15rem;
+  margin-left: 0.5rem;
 }
+
+h1 {
+  @include respond(phone) {
+    display: none;
+  }
+}
+
 label {
   display: inline-block;
   text-align: center;
@@ -150,6 +162,10 @@ label {
 button {
   margin-top: 2rem;
   font-size: 1.3rem;
+
+  @include respond(phone) {
+    margin-top: 0;
+  }
 }
 
 .description {

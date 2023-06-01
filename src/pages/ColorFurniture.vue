@@ -50,7 +50,7 @@ export default {
 
 h1 {
   @include respond(phone) {
-    margin-top: -1rem;
+    display: none;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
+  <error-modal v-if="error.state" title="Un error ocurrió" @close="handleError">
     <p>{{ error.message }}</p>
   </error-modal>
   <section class="general-form" v-if="!shelfs.length > 0">
@@ -75,16 +75,14 @@ export default {
     checkValidity() {
       if (!this.isValidHeight) {
         this.error.state = true;
-        this.error.message =
-          "height should be superior to 125 and inferior to 225";
+        this.error.message = "La altura tiene que ser entre 125cm y 225cm";
       } else if (!this.isValidWidth) {
         this.error.state = true;
-        this.error.message =
-          "width should be superior to 50 and inferior to 150";
+        this.error.message = "El ancho tiene que ser entre 50cm y 150cm";
       } else if (!this.isValidAmountOfShelfs) {
         this.error.state = true;
         this.error.message =
-          "too much shelfs, the space between each shelf should be at least 15cm";
+          "Hay demasiados espacios, la altura divido por la cantidad de espacios no puede ser inferior a 15cm";
       }
     },
     createShelfs() {

@@ -2,7 +2,7 @@
   <div class="flex-container">
     <error-modal
       v-if="error.state"
-      title="An error ocurred"
+      title="Un error ocurrió"
       @close="handleError"
     >
       <p>{{ error.message }}</p>
@@ -89,11 +89,11 @@ export default {
       if (!this.isValidHeight) {
         this.error.state = true;
         this.error.message =
-          "the height of each shelf can't be inferior to 15cm";
+          "La altura de cada espacio ne puede ser inferior a 15cm";
       } else if (!this.isValidHeightForUnconfirmedShelfs) {
         this.error.state = true;
         this.error.message =
-          "Remaining height for other(s) shelf(s) can't be inferior to 15cm";
+          "La altura restante para los otros espacios no puede ser inferior a 15cm cada uno";
       }
     },
     updateShelfHeight() {

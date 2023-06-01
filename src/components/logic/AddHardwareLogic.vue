@@ -15,7 +15,9 @@ export default {
   props: ['space', 'shelf'],
   data() {
     return {
-      someSpace: this.space,
+
+      currentSpace: this.space,
+
     };
   },
   computed: {
@@ -47,21 +49,25 @@ export default {
       this.updateSpaceInStore();
     },
     resetHardwareInSpace() {
-      if (this.someSpace.hardware) {
-        this.someSpace.hardware = '';
+
+      if (this.currentSpace.hardware) {
+        this.currentSpace.hardware = '';
+
       }
     },
     pushHardware() {
       if (this.hardware.door === true) {
-        this.someSpace.hardware = 'door';
+
+        this.currentSpace.hardware = 'door';
       } else if (this.hardware.foldingDoor === true) {
-        this.someSpace.hardware = 'foldingDoor';
+        this.currentSpace.hardware = 'foldingDoor';
       } else if (this.hardware.drawer === true) {
-        this.someSpace.hardware = 'drawer';
+        this.currentSpace.hardware = 'drawer';
       }
     },
     updateSpaceInStore() {
-      this.identifiedSpace = this.someSpace;
+      this.identifiedSpace = this.currentSpace;
+
     },
   },
 };

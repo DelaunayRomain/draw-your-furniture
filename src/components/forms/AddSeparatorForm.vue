@@ -42,7 +42,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 export default {
-  props: ['someShelf'],
+  props: ['currentShelf'],
   data() {
     return {
       isUpdating: false,
@@ -51,10 +51,10 @@ export default {
   computed: {
     ...mapGetters(['shelfs']),
     shelf() {
-      return this.someShelf;
+      return this.currentShelf;
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf === this.someShelf);
+      return this.shelfs.find((shelf) => shelf === this.currentShelf);
     },
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
@@ -80,7 +80,9 @@ export default {
     payload() {
       return {
         newShelf: this.shelf,
-        shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
+        shelfIndex: this.shelfs.findIndex(
+          (shelf) => shelf === this.currentShelf
+        ),
       };
     },
   },
@@ -115,7 +117,7 @@ export default {
     },
   },
   watch: {
-    someShelf() {
+    currentShelf() {
       this.isUpdating = true;
     },
   },

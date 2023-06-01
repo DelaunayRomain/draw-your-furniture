@@ -4,7 +4,10 @@ export default {
       totalHeight: null,
       totalWidth: null,
       shelfs: [],
-      shelfsAmount: null,
+      colorFurniture: {
+        color: 'natural',
+        spot: [],
+      },
     };
   },
   mutations: {
@@ -22,8 +25,8 @@ export default {
     totalWidth(state) {
       return state.totalWidth;
     },
-    shelfsAmount(state) {
-      return state.shelfsAmount;
+    colorFurniture(state) {
+      return state.colorFurniture;
     },
   },
   actions: {

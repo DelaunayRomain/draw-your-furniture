@@ -28,6 +28,10 @@ export default {
         totalHeight: 0,
         totalWidth: 0,
         shelfsAmount: 0,
+        colorFurniture: {
+          color: 'natural',
+          spot: [],
+        },
       },
     };
   },

@@ -1,6 +1,8 @@
 <template>
   <keep-alive>
-    <add-separator-form :someShelf="computedUpdatingShelf"></add-separator-form>
+    <add-separator-form
+      :current-shelf="computedUpdatingShelf"
+    ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
     <h1>Elige donde poner los separadores</h1>

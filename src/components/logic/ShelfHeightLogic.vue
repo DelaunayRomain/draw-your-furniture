@@ -10,7 +10,7 @@
           /><span>cm</span>
         </div>
       </div>
-      <p v-else>{{ someShelf.height }} cm</p>
+      <p v-else>{{ currentShelf.height }} cm</p>
     </div>
     <button v-if="isUpdating" class="button" @click="updateFurniture">
       OK
@@ -26,7 +26,7 @@ export default {
     return {
       isUpdating: false,
       newHeight: null,
-      someShelf: this.shelf,
+      currentShelf: this.shelf,
     };
   },
   computed: {
@@ -35,7 +35,7 @@ export default {
       return {
         backgroundColor: this.isUpdating
           ? 'rgba(117, 62, 14, 0.2)'
-          : this.someShelf.confirmed
+          : this.currentShelf.confirmed
           ? 'rgba(109, 206, 128, 0.2)'
           : '',
       };
@@ -58,7 +58,7 @@ export default {
       return this.newHeight && this.newHeight > 0;
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf.id === this.someShelf.id);
+      return this.shelfs.find((shelf) => shelf.id === this.currentShelf.id);
     },
   },
   methods: {
@@ -70,8 +70,8 @@ export default {
     },
     updateShelfHeight() {
       if (!this.isValidHeight) return;
-      this.someShelf.height = this.newHeight;
-      this.someShelf.confirmed = true;
+      this.currentShelf.height = this.newHeight;
+      this.currentShelf.confirmed = true;
     },
     updateOtherShelfsHeights() {
       this.shelfs.forEach((shelf) => {
@@ -80,7 +80,7 @@ export default {
       });
     },
     updateShelfInStore() {
-      this.identifiedShelf = this.someShelf;
+      this.identifiedShelf = this.currentShelf;
     },
     openUpdateModal() {
       this.isUpdating = true;

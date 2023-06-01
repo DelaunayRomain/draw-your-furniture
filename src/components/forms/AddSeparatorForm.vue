@@ -50,8 +50,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  props: ["someShelf"],
-  emits: ["is-valid"],
+  props: ["currentShelf"],
   data() {
     return {
       isUpdating: false,
@@ -60,10 +59,10 @@ export default {
   computed: {
     ...mapGetters(["shelfs", "totalWidth"]),
     shelf() {
-      return this.someShelf;
+      return this.currentShelf;
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf === this.someShelf);
+      return this.shelfs.find((shelf) => shelf === this.currentShelf);
     },
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
@@ -89,22 +88,17 @@ export default {
     payload() {
       return {
         newShelf: this.shelf,
-        shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
+        shelfIndex: this.shelfs.findIndex(
+          (shelf) => shelf === this.currentShelf
+        ),
       };
-    },
-    isValid() {
-      return this.shelfs.every(
-        (shelf) => shelf.insideSpaces.spaces.length === 1
-      );
     },
   },
   methods: {
     ...mapActions(["updateShelfInStore"]),
     updateSeparators() {
       this.pushSpacesIntoArray();
-      this.updateShelfInStore(this.payload);
-      this.checkValidity();
-      if (this.totalWidth > 80) this.$emit("is-valid", this.isValid);
+      this.$store.commit("updateShelfInStore", this.payload);
     },
     pushSpacesIntoArray() {
       this.shelf.insideSpaces.spaces = [];
@@ -131,7 +125,7 @@ export default {
     },
   },
   watch: {
-    someShelf() {
+    currentShelf() {
       this.isUpdating = true;
     },
   },

@@ -1,17 +1,17 @@
 <template>
   <footer>
-    <router-link
-      class="arrow arrow--left arrow--footer"
-      :to="beforePath"
-      :style="beforeStyle"
-      >&larr;</router-link
-    >
-    <router-link
-      class="arrow arrow--right arrow--footer"
-      :to="nextPath"
-      :style="nextStyle"
-      >&rarr;</router-link
-    >
+    <div class="before" :style="beforeStyle">
+      <p>Anterior</p>
+      <router-link class="arrow arrow--left arrow--footer" :to="beforePath"
+        >&larr;</router-link
+      >
+    </div>
+    <div class="after" :style="nextStyle">
+      <router-link class="arrow arrow--right arrow--footer" :to="nextPath"
+        >&rarr;</router-link
+      >
+      <p>Siguiente</p>
+    </div>
   </footer>
 </template>
 
@@ -91,9 +91,21 @@ footer {
   }
 }
 
+.before,
+.after {
+  display: flex;
+}
+
+p {
+  color: white;
+  flex: 1;
+  font-size: 1.3rem;
+}
+
 .arrow--footer {
-  @include respond(phone) {
-    display: inline-block;
-  }
+  display: inline-block;
+  color: white;
+  margin-top: 0.2rem;
+  flex: 1;
 }
 </style>

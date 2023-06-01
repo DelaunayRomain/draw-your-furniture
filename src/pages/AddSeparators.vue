@@ -1,11 +1,7 @@
 <template>
-  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
-    <p>{{ error.message }}</p>
-  </error-modal>
   <keep-alive>
     <add-separator-form
-      :some-shelf="computedUpdatingShelf"
-      @is-valid="checkValidity"
+      :current-shelf="computedUpdatingShelf"
     ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
@@ -39,10 +35,10 @@
 import AddSeparatorForm from "../components/forms/AddSeparatorForm.vue";
 import Shelf from "../components/furniture/Shelf.vue";
 import Legs from "../components/furniture/Legs.vue";
-import ErrorModal from "./../components/layout/ErrorModal.vue";
+
 import { mapGetters } from "vuex";
 export default {
-  components: { Shelf, AddSeparatorForm, Legs, ErrorModal },
+  components: { Shelf, AddSeparatorForm, Legs },
   data() {
     return {
       updatingShelfForSeparators: "",
@@ -63,12 +59,6 @@ export default {
     },
     passIdentifiedShelfToForm(shelf) {
       this.updatingShelfForSeparators = shelf;
-    },
-    checkValidity(isValid) {
-      this.isValid = isValid;
-    },
-    handleError() {
-      this.error = { state: null, message: "" };
     },
   },
 };

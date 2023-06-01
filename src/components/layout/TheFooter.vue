@@ -1,16 +1,14 @@
 <template>
   <footer>
     <div class="before" :style="beforeStyle">
-      <p>Anterior</p>
       <router-link class="arrow arrow--left arrow--footer" :to="beforePath"
-        >&larr;</router-link
-      >
+        >Anterior &larr;
+      </router-link>
     </div>
     <div class="after" :style="nextStyle" v-if="shelfs.length > 0">
-      <router-link class="arrow arrow--right arrow--footer" :to="nextPath"
-        >&rarr;</router-link
+      <router-link class="arrow arrow--right arrow--footer" :to="nextPath">
+        &rarr; Siguiente</router-link
       >
-      <p>Siguiente</p>
     </div>
   </footer>
 </template>
@@ -96,16 +94,11 @@ footer {
   display: flex;
 }
 
-p {
-  color: white;
-  flex: 1;
-  font-size: 1.3rem;
-}
-
 .arrow--footer {
   display: inline-block;
   color: white;
   margin-top: 0.2rem;
   flex: 1;
+  font-size: 1.3rem;
 }
 </style>

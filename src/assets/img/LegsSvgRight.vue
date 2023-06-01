@@ -6,6 +6,7 @@
     viewBox="0 0 1920 1080"
     shape-rendering="geometricPrecision"
     text-rendering="geometricPrecision"
+    class="mirror"
   >
     <rect
       width="1341.658108"
@@ -34,8 +35,12 @@
 
 <script>
 export default {
-  props: ['color', 'addColor'],
+  props: ["color", "addColor"],
 };
 </script>
 
-<style></style>
+<style>
+.mirror {
+  transform: scaleX(-1);
+}
+</style>

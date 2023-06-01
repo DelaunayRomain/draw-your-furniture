@@ -1,22 +1,23 @@
 <template>
   <div class="legs" :style="cssWidthForLegs">
-    <legs-svg
+    <legs-svg-left
       :addColor="addColor"
       class="leg leg--left"
       :color="colorLegs"
-    ></legs-svg>
-    <legs-svg
+    ></legs-svg-left>
+    <legs-svg-right
       :addColor="addColor"
       class="leg leg--right"
       :color="colorLegs"
-    ></legs-svg>
+    ></legs-svg-right>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-import LegsSvg from "./../../assets/img/LegsSvg.vue";
+import LegsSvgRight from "./../../assets/img/LegsSvgRight.vue";
+import LegsSvgLeft from "./../../assets/img/LegsSvgLeft.vue";
 export default {
-  components: { LegsSvg },
+  components: { LegsSvgLeft, LegsSvgRight },
   props: ["addColor"],
   computed: {
     ...mapGetters(["totalWidth", "colorFurniture", "colors"]),
@@ -57,7 +58,7 @@ export default {
   margin-left: 3rem;
 
   @include respond(phone) {
-    margin: 0 auto;
+    margin: 0;
   }
 }
 </style>

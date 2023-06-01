@@ -50,11 +50,13 @@ export default {
       return {
         width: this.totalWidth * 3 + 'px',
         height: this.shelf.height * 3 + 'px',
+
         borderTop:
           this.shelf.id === 0 ? '2px solid ${this.colorBorder}' : 'none',
         borderLeft: '2px solid ${this.colorBorder}',
         borderRight: '2px solid ${this.colorBorder}',
         borderBottom: '2px solid ${this.colorBorder}',
+
       };
     },
     isColorInChants() {

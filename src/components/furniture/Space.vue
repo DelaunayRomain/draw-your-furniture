@@ -21,6 +21,7 @@ export default {
     return {};
   },
   computed: {
+
     ...mapGetters(['shelfs', 'colorFurniture', 'colors']),
     cssStyle() {
       return {
@@ -37,6 +38,7 @@ export default {
         ? this.colors[this.colorFurniture.color]
         : 'rgb(117, 62, 14)';
     },
+    
   },
   methods: {},
   created() {},

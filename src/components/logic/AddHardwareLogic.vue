@@ -15,7 +15,9 @@ export default {
   props: ['space', 'shelf'],
   data() {
     return {
+
       currentSpace: this.space,
+
     };
   },
   computed: {
@@ -47,12 +49,15 @@ export default {
       this.updateSpaceInStore();
     },
     resetHardwareInSpace() {
+
       if (this.currentSpace.hardware) {
         this.currentSpace.hardware = '';
+
       }
     },
     pushHardware() {
       if (this.hardware.door === true) {
+
         this.currentSpace.hardware = 'door';
       } else if (this.hardware.foldingDoor === true) {
         this.currentSpace.hardware = 'foldingDoor';
@@ -62,6 +67,7 @@ export default {
     },
     updateSpaceInStore() {
       this.identifiedSpace = this.currentSpace;
+
     },
   },
 };

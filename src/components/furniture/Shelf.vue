@@ -70,7 +70,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .shelf {
   border-right: 2px solid rgb(117, 62, 14);
   border-left: 2px solid rgb(117, 62, 14);

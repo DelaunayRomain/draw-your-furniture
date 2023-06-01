@@ -14,12 +14,12 @@
             :shelfHeightLogic="true"
           ></shelf>
         </ul>
-        <router-link class="arrow left" to="/select-furniture"
+        <router-link class="arrow arrow--left" to="/select-furniture"
           >&larr;
         </router-link>
         <legs></legs>
         <router-link
-          class="arrow right"
+          class="arrow arrow--right"
           @click="unlockNextPage"
           to="/add-separators"
         >
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import CreateFurnitureForm from '../components/forms/CreateFurnitureForm.vue';
-import Shelf from '../components/furniture/Shelf.vue';
-import Legs from '../components/furniture/Legs.vue';
-import { mapGetters } from 'vuex';
+import CreateFurnitureForm from "../components/forms/CreateFurnitureForm.vue";
+import Shelf from "../components/furniture/Shelf.vue";
+import Legs from "../components/furniture/Legs.vue";
+import { mapGetters } from "vuex";
 export default {
   components: {
     CreateFurnitureForm,
@@ -43,7 +43,7 @@ export default {
     Legs,
   },
   computed: {
-    ...mapGetters(['shelfs', 'stages', 'totalWidth']),
+    ...mapGetters(["shelfs", "stages", "totalWidth"]),
   },
   methods: {
     unlockNextPage() {
@@ -53,41 +53,9 @@ export default {
 };
 </script>
 
-<style scoped>
-.show-furniture {
-  float: right;
-  width: 58vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  background-color: white;
-}
-
-.arrow {
-  text-decoration: none;
-  color: black;
-  font-size: 3rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  margin-top: 2rem;
-}
-
-.furniture {
-  margin-left: 7.9rem;
-  padding-left: 0;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
-h1 {
-  margin-bottom: 2rem;
-}
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+@import "../assets/styles/furniture.scss";
+@import "../assets/styles/arrows.scss";
 </style>

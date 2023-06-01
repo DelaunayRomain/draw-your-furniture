@@ -1,0 +1,35 @@
+.show-furniture {
+  float: right;
+  width: 58vw;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin: 3rem;
+  margin-left: 1.5rem;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+
+  @include respond(phone) {
+    float: none;
+    display: inline-block;
+    width: 90vw;
+    margin: 0 5vw;
+    padding: 2rem auto;
+    margin-bottom: 8rem;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.furniture {
+  margin-left: 7.9rem;
+  padding-left: 0;
+
+  @include respond(phone) {
+    margin: 0 auto;
+  }
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}

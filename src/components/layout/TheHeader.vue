@@ -1,7 +1,8 @@
 <template>
   <header>
-    <nav>
-      <h1><router-link to="/">Muebles Barquillo</router-link></h1>
+    <nav class="nav-web">
+      <h1><router-link to="/">Dibuja tu librero!</router-link></h1>
+
       <router-link
         to="/select-furniture"
         :class="{ disabled: !stages.selectFurniture }"
@@ -33,21 +34,29 @@
       <router-link to="/color" :class="{ disabled: !stages.color }">
         5
       </router-link>
+
+      <button>ayuda</button>
+    </nav>
+    <nav class="nav-phone">
+      <h1><router-link to="/">Dibuja tu librero!</router-link></h1>
       <button>ayuda</button>
     </nav>
   </header>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(['stages']),
+    ...mapGetters(["stages"]),
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
+
 header {
   width: 100%;
   height: 5rem;
@@ -55,6 +64,20 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.nav-web {
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+.nav-phone {
+  display: none;
+
+  @include respond(phone) {
+    display: flex;
+  }
 }
 
 header a {
@@ -86,7 +109,7 @@ h1 a.router-link-active {
   border-color: transparent;
 }
 
-header nav {
+nav {
   width: 90%;
   margin: auto;
   display: flex;
@@ -94,7 +117,7 @@ header nav {
   align-items: center;
 }
 
-header ul {
+ul {
   list-style: none;
   margin: 0;
   padding: 0;

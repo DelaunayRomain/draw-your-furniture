@@ -12,7 +12,7 @@
       </section>
       <menu>
         <slot name="actions">
-          <button @click="tryClose">Close</button>
+          <button @click="tryClose">Cerrar</button>
         </slot>
       </menu>
     </dialog>
@@ -21,17 +21,19 @@
 
 <script>
 export default {
-  props: ['title'],
-  emits: ['close'],
+  props: ["title"],
+  emits: ["close"],
   methods: {
     tryClose() {
-      this.$emit('close');
+      this.$emit("close");
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .backdrop {
   position: fixed;
   top: 0;
@@ -64,7 +66,7 @@ header {
   padding: 1rem;
 }
 
-header h2 {
+h2 {
   margin: 0;
 }
 

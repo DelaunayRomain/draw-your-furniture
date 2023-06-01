@@ -1,51 +1,54 @@
 <template>
   <div class="legs" :style="cssWidthForLegs">
-    <legs-svg
+    <legs-svg-left
       :addColor="addColor"
-      class="leg left-leg"
+      class="leg leg--left"
       :color="colorLegs"
-    ></legs-svg>
-    <legs-svg
+    ></legs-svg-left>
+    <legs-svg-right
       :addColor="addColor"
-      class="leg right-leg"
+      class="leg leg--right"
       :color="colorLegs"
-    ></legs-svg>
+    ></legs-svg-right>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-import LegsSvg from './../../assets/img/LegsSvg.vue';
+import { mapGetters } from "vuex";
+import LegsSvgRight from "./../../assets/img/LegsSvgRight.vue";
+import LegsSvgLeft from "./../../assets/img/LegsSvgLeft.vue";
 export default {
-  components: { LegsSvg },
-  props: ['addColor'],
+  components: { LegsSvgLeft, LegsSvgRight },
+  props: ["addColor"],
   computed: {
-    ...mapGetters(['totalWidth', 'colorFurniture', 'colors']),
+    ...mapGetters(["totalWidth", "colorFurniture", "colors"]),
     cssWidthForLegs() {
-      return { width: this.totalWidth * 3 + 'px' };
+      return { width: this.totalWidth * 3 + "px" };
     },
     colorLegs() {
       return this.addColor
         ? this.colors[this.colorFurniture.legs]
-        : this.colors['black'];
+        : this.colors["black"];
     },
   },
 };
 </script>
 
-<style scoped>
-.left-leg {
-  float: left;
-  margin-left: 12px;
-}
-
-.right-leg {
-  float: right;
-  margin-right: 12px;
-}
-
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
 .leg {
   height: 100%;
   width: auto;
+
+  &--right {
+    float: right;
+    margin-right: 1rem;
+  }
+
+  &--left {
+    float: left;
+    margin-left: 1rem;
+  }
 }
 
 .legs {
@@ -53,5 +56,9 @@ export default {
   float: left;
   height: 30px;
   margin-left: 3rem;
+
+  @include respond(phone) {
+    margin: 0;
+  }
 }
 </style>

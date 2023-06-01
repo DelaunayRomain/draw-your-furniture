@@ -1,10 +1,9 @@
 <template>
   <section class="home">
-    <h1>Generador de cotizaciones para muebles barquillo</h1>
+    <h1>Generador de librero a medida</h1>
     <h3>
-      Esta applicacion te permite dibujar y cotizar con nosotros un mueble a
-      medida. Que sea para soñar tu mueble perfecto, o porque realmente quieres
-      cotizarlo, ayudanos a mejorar esta app!
+      Que sea para soñar tu librero perfecto o porque realmente quieres
+      cotizarlo, disfruta el juego de crearlo tu!
     </h3>
     <button>
       <router-link
@@ -18,10 +17,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(['stages']),
+    ...mapGetters(["stages"]),
   },
   methods: {
     unlockNextPage() {
@@ -31,7 +30,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+
 .home {
   background-color: beige;
   text-align: center;
@@ -52,6 +54,9 @@ h3 {
 
 button {
   transform: translateX(20rem);
+  @include respond(phone) {
+    transform: translateX(0);
+  }
 }
 
 .router-link {

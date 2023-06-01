@@ -1,17 +1,18 @@
 <template>
   <section class="general-form">
-    <h2>Separadores</h2>
-    <h4 class="description" v-if="totalWidth > 80">
+    <h1>Separadores</h1>
+    <h4 class="description" v-if="totalWidth > 80 && isUpdating">
       Tu librero mide mas de 80cm de ancho, tienes que agregarle por lo menos 1
       separador por espacio!
     </h4>
     <div v-if="isUpdating">
       <form @submit.prevent="clearData">
         <div class="furniture-input">
-          <label>Cuantos Separadores ?</label>
+          <label>Cantidad de separadores:</label>
           <select
             name="amountOfSeparators"
             id="amountOfSeparators"
+            class="input"
             v-model.number="this.shelf.insideSpaces.amountOfSeparators"
             @change="updateSeparators"
           >
@@ -22,10 +23,11 @@
           </select>
         </div>
         <div class="furniture-input">
-          <label>Que orientacion ?</label>
+          <label>Symetrico/asymetrico :</label>
           <select
             name="typeOfSeparators"
             id="typeOfSeparators"
+            class="input"
             v-model="shelf.insideSpaces.typeOfSeparators"
             @change="updateSeparators"
           >
@@ -38,7 +40,9 @@
       </form>
     </div>
     <div v-else>
-      <h2>Haz click en el espacio para agregar separadores</h2>
+      <h2>
+        Haz click a dentro de un espacio del mueble para agregar separadores
+      </h2>
     </div>
   </section>
 </template>
@@ -46,8 +50,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  props: ["someShelf"],
-  emits: ["is-valid"],
+  props: ["currentShelf"],
   data() {
     return {
       isUpdating: false,
@@ -56,10 +59,10 @@ export default {
   computed: {
     ...mapGetters(["shelfs", "totalWidth"]),
     shelf() {
-      return this.someShelf;
+      return this.currentShelf;
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf === this.someShelf);
+      return this.shelfs.find((shelf) => shelf === this.currentShelf);
     },
     widthVariationRelatedToTypeOfSeparator() {
       const objectTypeSeparators = {
@@ -85,22 +88,17 @@ export default {
     payload() {
       return {
         newShelf: this.shelf,
-        shelfIndex: this.shelfs.findIndex((shelf) => shelf === this.someShelf),
+        shelfIndex: this.shelfs.findIndex(
+          (shelf) => shelf === this.currentShelf
+        ),
       };
-    },
-    isValid() {
-      return this.shelfs.every(
-        (shelf) => shelf.insideSpaces.spaces.length === 1
-      );
     },
   },
   methods: {
     ...mapActions(["updateShelfInStore"]),
     updateSeparators() {
       this.pushSpacesIntoArray();
-      this.updateShelfInStore(this.payload);
-      this.checkValidity();
-      if (this.totalWidth > 80) this.$emit("is-valid", this.isValid);
+      this.$store.commit("updateShelfInStore", this.payload);
     },
     pushSpacesIntoArray() {
       this.shelf.insideSpaces.spaces = [];
@@ -127,21 +125,30 @@ export default {
     },
   },
   watch: {
-    someShelf() {
+    currentShelf() {
       this.isUpdating = true;
     },
   },
 };
 </script>
 
-<style scoped>
-h2 {
-  margin-bottom: 1rem;
-}
-input {
+<style lang="scss" scoped>
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/constants.scss";
+@import "../../assets/styles/forms.scss";
+
+.input {
   font: inherit;
   padding: 0.15rem;
+  margin-left: 0.5rem;
 }
+
+h1 {
+  @include respond(phone) {
+    display: none;
+  }
+}
+
 label {
   display: inline-block;
   text-align: center;
@@ -149,18 +156,10 @@ label {
 button {
   margin-top: 2rem;
   font-size: 1.3rem;
-}
-.general-form {
-  float: left;
-  width: 28vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-right: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  height: 70vh;
-  background-color: white;
+
+  @include respond(phone) {
+    margin-top: 0;
+  }
 }
 
 .description {

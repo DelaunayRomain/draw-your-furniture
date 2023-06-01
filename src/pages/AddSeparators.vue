@@ -1,11 +1,7 @@
 <template>
-  <error-modal v-if="error.state" title="An error ocurred" @close="handleError">
-    <p>{{ error.message }}</p>
-  </error-modal>
   <keep-alive>
     <add-separator-form
-      :some-shelf="computedUpdatingShelf"
-      @is-valid="checkValidity"
+      :current-shelf="computedUpdatingShelf"
     ></add-separator-form>
   </keep-alive>
   <section class="show-furniture">
@@ -22,9 +18,14 @@
       ></keep-alive>
     </ul>
 
-    <router-link class="arrow left" to="/create-furniture">&larr;</router-link>
+    <router-link class="arrow arrow--left" to="/create-furniture"
+      >&larr;</router-link
+    >
     <legs></legs
-    ><router-link class="arrow right" @click="unlockNextPage" to="/add-hardware"
+    ><router-link
+      class="arrow arrow--right"
+      @click="unlockNextPage"
+      to="/add-hardware"
       >&rarr;</router-link
     >
   </section>
@@ -34,10 +35,10 @@
 import AddSeparatorForm from "../components/forms/AddSeparatorForm.vue";
 import Shelf from "../components/furniture/Shelf.vue";
 import Legs from "../components/furniture/Legs.vue";
-import ErrorModal from "./../components/layout/ErrorModal.vue";
+
 import { mapGetters } from "vuex";
 export default {
-  components: { Shelf, AddSeparatorForm, Legs, ErrorModal },
+  components: { Shelf, AddSeparatorForm, Legs },
   data() {
     return {
       updatingShelfForSeparators: "",
@@ -59,48 +60,19 @@ export default {
     passIdentifiedShelfToForm(shelf) {
       this.updatingShelfForSeparators = shelf;
     },
-    checkValidity(isValid) {
-      this.isValid = isValid;
-    },
-    handleError() {
-      this.error = { state: null, message: "" };
-    },
   },
 };
 </script>
 
-<style scoped>
-.show-furniture {
-  float: right;
-  width: 58vw;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem;
-  margin-left: 1.5rem;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  background-color: white;
-}
+<style lang="scss" scoped>
+@import "../assets/styles/mixins.scss";
+@import "../assets/styles/constants.scss";
+@import "../assets/styles/furniture.scss";
+@import "../assets/styles/arrows.scss";
 
-.arrow {
-  text-decoration: none;
-  color: black;
-  font-size: 3rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  margin-top: 2rem;
-}
-
-.furniture {
-  margin-left: 7.9rem;
-  padding-left: 0;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
+h1 {
+  @include respond(phone) {
+    display: none;
+  }
 }
 </style>

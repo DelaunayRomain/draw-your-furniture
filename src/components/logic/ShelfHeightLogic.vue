@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <div class="flex-container" :style="cssStyle">
     <error-modal
       v-if="error.state"
       title="Un error ocurrió"
@@ -7,17 +7,23 @@
     >
       <p>{{ error.message }}</p>
     </error-modal>
-    <div class="shelf" :style="cssStyle" @click="openUpdateModal">
-      <div v-if="isUpdating">
+    <div class="shelf" @click="openUpdateModal">
+      <div v-if="currentShelf.isUpdating">
         <div class="update-input">
           <input type="number" v-model="newHeight" /><span>cm</span>
         </div>
       </div>
       <p v-else>{{ shelf.height }} cm</p>
     </div>
-    <button v-if="isUpdating" class="button" @click="updateFurniture">
-      OK
-    </button>
+    <div>
+      <button
+        v-if="currentShelf.isUpdating"
+        class="button"
+        @click="updateFurniture"
+      >
+        OK
+      </button>
+    </div>
   </div>
 </template>
 
@@ -30,18 +36,17 @@ export default {
   data() {
     return {
       error: { state: null, message: "" },
-      isUpdating: false,
       newHeight: this.shelf.height,
-      someShelf: this.shelf,
+      currentShelf: this.shelf,
     };
   },
   computed: {
     ...mapGetters(["totalHeightForShelfs", "shelfs"]),
     cssStyle() {
       return {
-        backgroundColor: this.isUpdating
+        backgroundColor: this.currentShelf.isUpdating
           ? "rgba(117, 62, 14, 0.2)"
-          : this.someShelf.confirmed
+          : this.currentShelf.confirmed
           ? "rgba(109, 206, 128, 0.2)"
           : "",
       };
@@ -61,19 +66,19 @@ export default {
         .reduce((acc, shelf) => acc + shelf.height, 0);
     },
     isValidHeight() {
-      return this.newHeight && this.newHeight > 15;
+      return this.newHeight && this.newHeight >= 15;
     },
     isValidHeightForUnconfirmedShelfs() {
       return (
         (this.totalHeightForShelfs -
           this.confirmedShelfsTotalHeight -
           this.newHeight) /
-          (this.amountOfUnconfirmedShelfs - 1) >
+          (this.amountOfUnconfirmedShelfs - 1) >=
         15
       );
     },
     identifiedShelf() {
-      return this.shelfs.find((shelf) => shelf.id === this.someShelf.id);
+      return this.shelfs.find((shelf) => shelf.id === this.currentShelf.id);
     },
   },
   methods: {
@@ -83,7 +88,7 @@ export default {
       this.updateShelfHeight();
       this.updateOtherShelfsHeights();
       this.updateShelfInStore();
-      this.isUpdating = false;
+      this.currentShelf.isUpdating = false;
     },
     checkValidity() {
       if (!this.isValidHeight) {
@@ -97,8 +102,8 @@ export default {
       }
     },
     updateShelfHeight() {
-      this.someShelf.height = this.newHeight;
-      this.someShelf.confirmed = true;
+      this.currentShelf.height = this.newHeight;
+      this.currentShelf.confirmed = true;
     },
     updateOtherShelfsHeights() {
       this.shelfs.forEach((shelf) => {
@@ -107,13 +112,19 @@ export default {
       });
     },
     updateShelfInStore() {
-      this.identifiedShelf = this.someShelf;
+      this.identifiedShelf = this.currentShelf;
     },
     openUpdateModal() {
-      this.isUpdating = true;
+      this.shelfs.forEach((shelf) => (shelf.isUpdating = false));
+      this.currentShelf.isUpdating = true;
     },
     handleError() {
       this.error = { state: null, message: "" };
+    },
+  },
+  watch: {
+    currentShelf() {
+      this.newHeight = this.shelf.height;
     },
   },
 };
@@ -125,6 +136,7 @@ export default {
 .shelf {
   width: 100%;
   height: 100%;
+  flex: 1;
 }
 
 input {
@@ -133,17 +145,26 @@ input {
 }
 
 .update-input {
-  margin-top: 0.5rem;
+  vertical-align: center;
   display: inline-block;
+  margin-right: 0;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translateY(-70%);
 }
 
-.button {
+button {
   display: inline-block;
-  margin-left: 1rem;
+  margin-right: 1rem;
+  flex: 1;
+  width: 4rem;
+  border-radius: 100px;
 }
 
 .flex-container {
-  display: flex;
+  display: inline-flex;
+  position: relative;
   align-items: center;
 }
 </style>

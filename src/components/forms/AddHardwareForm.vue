@@ -101,6 +101,9 @@ p {
 
   &--folding-door {
     background-color: rgb(189, 183, 107);
+    @include respond(phone) {
+      display: none;
+    }
   }
 
   &--drawer {

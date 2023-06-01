@@ -6,7 +6,7 @@
         >&larr;</router-link
       >
     </div>
-    <div class="after" :style="nextStyle">
+    <div class="after" :style="nextStyle" v-if="shelfs.length > 0">
       <router-link class="arrow arrow--right arrow--footer" :to="nextPath"
         >&rarr;</router-link
       >
@@ -49,7 +49,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["stages"]),
+    ...mapGetters(["stages", "shelfs"]),
     beforePath() {
       return !this.path[this.$route.path].before
         ? this.path[this.$route.path]

@@ -19,11 +19,31 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["stages"]),
+    ...mapGetters([
+      "stages",
+      "totalHeight",
+      "totalWidth",
+      "shelfs",
+      "colorFurniture",
+      "totalHeightForShelfs",
+    ]),
   },
   methods: {
     unlockNextPage() {
+      this.resetFurniture();
       this.stages.createFurniture = true;
+    },
+    resetFurniture() {
+      this.totalHeight = 0;
+      this.totalWidth = 0;
+      this.totalHeightForShelfs = 0;
+      this.shelfs = [];
+      this.colorFurniture = {
+        chants: "natural",
+        background: "white",
+        hardware: "natural",
+        legs: "natural",
+      };
     },
   },
 };
